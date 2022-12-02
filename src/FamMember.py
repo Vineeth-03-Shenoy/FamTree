@@ -10,7 +10,7 @@ except mysql.connector.errors.ProgrammingError:
 mycursor = mydb.cursor()
 
 def fam_MemberTable():
-    mycursor.execute("USE FamTree")
+    mycursor.execute("USE dummy")
     mycursor.execute("CREATE TABLE IF NOT EXISTS Family_Member(ID VARCHAR(18) PRIMARY KEY, First_Name VARCHAR(20) NOT NULL, Name VARCHAR(20) NOT NULL, Last_Name VARCHAR(20) NOT NULL, DoB DATE NOT NULL, DoD DATE)")
 
 def ID_Creator(Fname,name,Lname,Dob,coll_val):
@@ -67,3 +67,75 @@ def FM_Insert():
             print("Successfully Inserted Value")
             break
     mydb.commit()
+
+'''def Famtree(target1, maintarget):
+    mycursor.execute('USE dummy')
+    mycursor.execute('SELECT * FROM parents')
+    L=mycursor.fetchall()
+    findsource = False
+    findtarget = False
+    findtree = False
+    T=[]
+    print(L,"\n")
+
+    while findtree==False:
+        #while findsource==False:
+        source1,T,L,findsource = findSourceMethod(target1,L,T)
+        print(source1,"\n",T,"\n",L)
+        #while findtarget==False:
+        T,target1,target2=findTargetMethod(source1,T,L)
+        if maintarget in T:
+            findtree=True
+        source2,T,L,findsource=findSourceMethod(target2,L,T)
+        print(source2,"\n",T,"\n",L)    
+                
+            #findtarget=True
+
+        #findtree=True
+    return T
+
+def findSourceMethod(source,L,T):
+    for i in L:
+        for j in i:
+            if j==source:
+                if j not in T:
+                    T.append(j)
+                    L.remove(i)
+                    return j,T,L,True
+                else: return j,T,L,True
+
+def findTargetMethod(source,T,L):
+    sql_cmd = "SELECT * FROM parents WHERE ID=%s OR Father_ID=%s OR Mother_ID=%s " 
+    values = (source,source,source)
+    mycursor.execute(sql_cmd,values)
+    U=mycursor.fetchall()
+    m=[]
+    for i in L:
+        for j in i:
+            if j==source:
+                m=list(i)
+                m.remove(source)
+                T.extend(m)
+    target1=m[0]
+    target2=m[1]
+    return T,target1,target2'''
+            
+def FamList(source, Target):
+    mycursor.execute('USE dummy')
+    Famtree = []
+    Famtree.append(extractParents(source))
+    Famtree.append(extractParents(Target))
+    return Famtree
+
+
+def extractParents(Son):
+    dict={"Child":Son,}
+    mycursor.execute("SELECT Father_ID FROM parents WHERE ID=%s",(Son,))
+    T = mycursor.fetchone()
+    F=''.join(T)
+    mycursor.execute("SELECT Mother_ID FROM parents WHERE ID=%s",(Son,))
+    T = mycursor.fetchone()
+    M=''.join(T)
+    dict["Parents"]=F+" & "+M
+    return dict
+

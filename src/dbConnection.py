@@ -18,5 +18,5 @@ def DBcreate():
     mydb=connection()
     db_cursor = mydb.cursor()
     db_cursor.execute("CREATE DATABASE IF NOT EXISTS FamTree")
-    db_cursor.execute("USE FamTree")
+    db_cursor.execute("USE dummy")
     mydb.commit()

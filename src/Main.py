@@ -4,9 +4,7 @@ import FamMember
 def main():
     dbConnection.connection()
     dbConnection.DBcreate()
-    FamMember.fam_MemberTable()
-    FamMember.FM_Insert()
-    
+    print(FamMember.FamList('Vin','Cous'))
 
 if __name__ =='__main__':
-    main()
+    main() 
