@@ -118,7 +118,7 @@ def findTargetMethod(source,T,L):
                 T.extend(m)
     target1=m[0]
     target2=m[1]
-    return T,target1,target2'''
+    return T,target1,target2
             
 def FamList(source, Target):
     mycursor.execute('USE dummy')
@@ -137,5 +137,45 @@ def extractParents(Son):
     T = mycursor.fetchone()
     M=''.join(T)
     dict["Parents"]=F+" & "+M
-    return dict
+    return dict'''
 
+'''class family_member:
+    def __init__(self,ID,name):
+        self.ID=ID
+        self.name=name'''
+
+def tupleToString(Tup):
+    st=''
+    for item in Tup:
+        st = st + item
+    return st
+
+def parentsFinder(source,target):
+    mycursor.execute('USE dummy')
+    mycursor.execute("SELECT Father_ID from parents WHERE ID=%s",(source,))
+    targetID=mycursor.fetchone()
+    targetID1=tupleToString(targetID)
+    if target==targetID1:
+        return 'Father',True
+    else:
+        mycursor.execute("SELECT Mother_ID from parents WHERE ID=%s",(source,))
+        targetID=mycursor.fetchone()
+        targetID2=tupleToString(targetID)
+        if target==targetID2:
+            return 'Mother',True
+    return targetID1+targetID2,False
+
+
+
+
+def relationFinder(source,target):
+    mycursor.execute('USE dummy')
+    foundTarget=False
+    relationship=''
+    while foundTarget==False:
+        relationship,foundTarget=parentsFinder(source,target)
+        if foundTarget==True:
+            print(source+'<---'+relationship+'---'+target) 
+            break
+
+        
