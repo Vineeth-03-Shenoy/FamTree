@@ -55,7 +55,7 @@ ROOT_URLCONF = 'FamilyDBMS.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['template'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,12 +76,15 @@ WSGI_APPLICATION = 'FamilyDBMS.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'familytesttree',
         'USER':'root',
         'PASSWORD': 'VineethMYSQL@123',
         'HOST':'localhost',
         'PORT':'3307',
+        'OPTIONS':{
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        }
     }
 }
 
