@@ -68,18 +68,19 @@
         </style>
     </head>
     <body>
+         
         <div class="container">
-            <form >
+            <form name = "form" method="POST" > {% csrf_token %}
                 <h1>Login Form</h1>
                 <div class="form group"> 
                     <label for="">Username</label>
-                    <input type="text" class="form-control" required>
+                    <input type="text" placeholder="Identifiant" name="username" class="form-control" required />
                 </div>
                 <div class="form group"> 
                     <label for="">Password </label>
-                    <input type="password" class="form-control" required>
+                    <input type="password" placeholder="password" name="password" class="form-control" required />
                 </div>
-                <input  class="btn" type="submit" name="submit" value="LOGIN">
+                <input  class="btn" type="submit" name="submit" value="Login">
             </form>
         </div>
     </body>
