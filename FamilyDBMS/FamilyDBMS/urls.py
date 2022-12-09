@@ -15,10 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from login.views import login_action
+from famapp.views import hello
 
 admin.autodiscover()
 
 urlpatterns = [
-    path('famapp/', include('famapp.urls')),
+    path('famapp/', hello),
+    path('login/', login_action),
     path('admin/', admin.site.urls),
 ]
