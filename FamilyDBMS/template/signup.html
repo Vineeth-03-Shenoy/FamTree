@@ -1,0 +1,19 @@
+{% extends "./base.html" %}
+{% load static %}
+
+{% block content %}
+    <center>
+        <h1>Signup</h1>
+        <form action="/accounts/login/">
+            <center><p>Login, if you have signed up already</p></center>
+            <center><button name="Log in">Login</button></center>
+            <p></p>
+        </form>
+        <form action="/accounts/signup/" method="post">
+            {% csrf_token %} 
+            {{ form }} 
+            <center><input type="submit" value="Signup"></center>
+        </form>
+    </center>
+    
+{% endblock content %}
