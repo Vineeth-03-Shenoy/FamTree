@@ -1,19 +1,82 @@
-{% extends "./base.html" %}
 {% load static %}
 
-{% block content %}
-    <center>
-        <h1>Signup</h1>
-        <form action="/accounts/login/">
-            <center><p>Login, if you have signed up already</p></center>
-            <center><button name="Log in">Login</button></center>
-            <p></p>
-        </form>
-        <form action="/accounts/signup/" method="post">
-            {% csrf_token %} 
-            {{ form }} 
-            <center><input type="submit" value="Signup"></center>
-        </form>
-    </center>
-    
-{% endblock content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script src="{% static 'js/accountsscripts.js' %}" defer></script>
+</head>
+<body>
+    <nav class="mb-3">
+        {% if user.is_authenticated %} 
+            <form action="/accounts/signup/" method="post">
+                {% csrf_token %}
+                <button type="submit">Log Out</button>
+            </form>
+        {% endif %} 
+    </nav>
+        <div class="container">
+            
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            <div class="card center spacer">
+                <h1 class="title text-center">Register With</h1>
+                <div class="social-login">
+                    <button class="social-btn">
+                        <img class="icon" src="{% static 'images/gmail.svg' %}" alt="gmail icon">
+                        Gmail
+                    </button>
+                    <button class="social-btn">
+                        <img class="icon" src="{% static 'images/facebook.svg' %}" alt="gmail icon">
+                        Facebook
+                    </button>
+                </div>
+                <div class="text-center line form-divider">or</div>
+                <form method="post" action="/accounts/signup/" class="login-form spacer" id="signup-form">
+                    {% csrf_token %} 
+                    <div class="input-group">
+                        <img class="icon input-icon" src="{% static 'images/profile-user.svg' %}" alt="">
+                        {{ form.username }}
+                        
+                    </div>
+                    <div class="input-group">
+                        <img class="icon input-icon" src="{% static 'images/envelope.png' %}" alt="">
+                        {{ form.email }}
+                        
+                    </div>
+                    <div class="input-group">
+                        <img class="icon input-icon" src="{% static 'images/key.svg' %}" alt="">
+                        {{ form.password1 }}
+                        
+                    </div>
+                    <div class="input-group">
+                        <img class="icon input-icon" src="{% static 'images/key.svg' %}" alt="">
+                        {{ form.password2 }}
+                    </div>
+                    <input type="submit" class="submit" value="Signup">
+                </form>
+            </div>
+        </div>
+        <div class="redirect">
+            <form action="/accounts/login/"">
+                Already have an account?&nbsp;<button class="linkbutton">Log in</button>
+                <br><br>
+            </form>
+            <form action="/accounts/forgot_password/"">
+                <button class="linkbutton">forgot password?</button>
+                <br><br>
+            </form>
+        </div>
+       
+</body>
+</html>
