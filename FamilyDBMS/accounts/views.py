@@ -1,9 +1,11 @@
+
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages  
 from .forms import SignUpForm
 from django.contrib.auth import authenticate, login, logout
-  
+from famapp.views import home
+
 # Create your views here.
 
 #signup_view method to handle HTTP requests for sign up
@@ -19,7 +21,8 @@ def signup_view(request):
             #new_user = authenticate(username=username)
             #if new_user is not None:
             #login(request, form)
-            return render(request, 'login.html')
+            #return render(request, 'login.html')
+            return redirect(home)
     else:
         form = SignUpForm()
 
@@ -34,7 +37,7 @@ def login_view(request):
             user = form.get_user()
             login(request, user)
             messages.success(request, 'logged in successfully')
-            return render(request, 'base.html')
+            return redirect(home)
     else:
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
@@ -42,4 +45,4 @@ def login_view(request):
 def logout_view(request):
     if request.method == 'POST':
         logout(request)
-        return render(request, 'signup.html')
+        return redirect(signup_view)

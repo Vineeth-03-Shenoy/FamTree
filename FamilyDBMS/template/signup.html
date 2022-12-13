@@ -1,34 +1,16 @@
+
+{% extends './base.html' %}
 {% load static %}
-
-<!DOCTYPE html>
-<html>
+<html class="html">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <script src="{% static 'js/accountsscripts.js' %}" defer></script>
+    
 </head>
-<body>
-    <nav class="mb-3">
-        {% if user.is_authenticated %} 
-            <form action="/accounts/signup/" method="post">
-                {% csrf_token %}
-                <button type="submit">Log Out</button>
-            </form>
-        {% endif %} 
-    </nav>
-        <div class="container">
-            
-            {% if messages %}
-            <ul>
-                {% for message in messages %}
-                <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %}
 
+<body class="body">
+
+{% block content %}
+        <center>
             <div class="card center spacer">
                 <h1 class="title text-center">Register With</h1>
                 <div class="social-login">
@@ -42,7 +24,7 @@
                     </button>
                 </div>
                 <div class="text-center line form-divider">or</div>
-                <form method="post" action="/accounts/signup/" class="login-form spacer" id="signup-form">
+                <form method="post" action="/famapp/accounts/signup/" class="login-form spacer" id="signup-form">
                     {% csrf_token %} 
                     <div class="input-group">
                         <img class="icon input-icon" src="{% static 'images/profile-user.svg' %}" alt="">
@@ -65,18 +47,20 @@
                     </div>
                     <input type="submit" class="submit" value="Signup">
                 </form>
+                <form action="/famapp/accounts/login/">
+                    <center>Already have an account?&nbsp;<button class="linkbutton">Log in</button></center>
+                    <br><br>
+                </form>
             </div>
-        </div>
-        <div class="redirect">
-            <form action="/accounts/login/"">
-                Already have an account?&nbsp;<button class="linkbutton">Log in</button>
-                <br><br>
-            </form>
-            <form action="/accounts/forgot_password/"">
+            <!--<form action="famapp/accounts/forgot_password/"">
                 <button class="linkbutton">forgot password?</button>
                 <br><br>
-            </form>
-        </div>
-       
+            </form>-->
+        
+        </center>
+
+
+{% endblock content %} 
+
 </body>
 </html>
