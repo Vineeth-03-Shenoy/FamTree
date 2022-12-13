@@ -13,16 +13,6 @@
         <center>
             <div class="card center spacer">
                 <h1 class="title text-center">Register With</h1>
-                <div class="social-login">
-                    <button class="social-btn">
-                        <img class="icon" src="{% static 'images/gmail.svg' %}" alt="gmail icon">
-                        Gmail
-                    </button>
-                    <button class="social-btn">
-                        <img class="icon" src="{% static 'images/facebook.svg' %}" alt="gmail icon">
-                        Facebook
-                    </button>
-                </div>
                 <div class="text-center line form-divider">or</div>
                 <form method="post" action="/famapp/accounts/signup/" class="login-form spacer" id="signup-form">
                     {% csrf_token %} 
@@ -52,6 +42,7 @@
                     <br><br>
                 </form>
             </div>
+            
             <!--<form action="famapp/accounts/forgot_password/"">
                 <button class="linkbutton">forgot password?</button>
                 <br><br>

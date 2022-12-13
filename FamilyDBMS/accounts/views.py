@@ -13,15 +13,9 @@ def signup_view(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
-            #username = form.cleaned_data.get("username")
-            #password = form.cleaned_data.get("password1")
-            #email = form.cleaned_data.get("email")
             form = form.save()
             messages.success(request, 'Account created successfully')
-            #new_user = authenticate(username=username)
-            #if new_user is not None:
-            #login(request, form)
-            #return render(request, 'login.html')
+            login(request, form)
             return redirect(home)
     else:
         form = SignUpForm()
