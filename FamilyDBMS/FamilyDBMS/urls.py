@@ -16,10 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from famapp import views
+
 admin.autodiscover()
 
 urlpatterns = [
     path('', views.home),
+    path('famapp/home/',views.FamHome),
     path('famapp/', include('famapp.urls')),
     path('admin/', admin.site.urls),
 ]

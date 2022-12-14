@@ -6,6 +6,9 @@ from django.http import HttpResponse
 def home(request):
     return render(request, "home.html")
 
+def FamHome(request):
+    return render(request, "familyHOME.html")
+
 def insertNewMember(request):
     today = datetime.datetime.now().date()
     return render(request, "famapp.html", {"today":today})

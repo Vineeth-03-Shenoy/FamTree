@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages  
 from .forms import SignUpForm
 from django.contrib.auth import authenticate, login, logout
-from famapp.views import home
+from famapp.views import home, FamHome
 
 # Create your views here.
 
@@ -16,7 +16,7 @@ def signup_view(request):
             form = form.save()
             messages.success(request, 'Account created successfully')
             login(request, form)
-            return redirect(home)
+            return redirect(FamHome)
     else:
         form = SignUpForm()
 
@@ -30,8 +30,7 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            messages.success(request, 'logged in successfully')
-            return redirect(home)
+            return redirect(FamHome)
     else:
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
