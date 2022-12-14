@@ -5,7 +5,7 @@ from . import views
 app_name = 'famapp'
 
 urlpatterns = [
-    path('', views.home),
-    path('home/',views.FamHome),
+    path('', views.home, name="home"),
+    path('home/',views.FamHome, name="famHome"),
     path('accounts/', include('accounts.urls')),
 ]

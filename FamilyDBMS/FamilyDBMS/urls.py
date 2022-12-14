@@ -20,8 +20,8 @@ from famapp import views
 admin.autodiscover()
 
 urlpatterns = [
-    path('', views.home),
-    path('famapp/home/',views.FamHome),
+    path('', views.home, name="home"),
+    path('famapp/home/',views.FamHome, name="famHome"),
     path('famapp/', include('famapp.urls')),
     path('admin/', admin.site.urls),
 ]

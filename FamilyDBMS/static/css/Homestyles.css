@@ -12,8 +12,9 @@
 }
 .navbar{
     width: 1200px;
-    height: 75px;
+    height: 100px;
     margin: auto;
+    background-color: rgba(123, 66, 19, 0.459);
 }
 .icon{
     width: 200px;
@@ -34,54 +35,61 @@
     float: left;
     height: 70px;
 }
+
 ul{
     float: left;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 ul li{
     list-style: none;
     margin-left: 62px;
     margin-top: 27px;
     font-size: 14px;
 }
-ul li a{
+
+.navbutton{
     text-decoration: none;
+    background-color: transparent;
+    border: transparent;
     color: #fff;
     font-family: Arial;
     font-weight: bold;
+    font-size: 20px;
     transition: 0.4s ease-in-out;
 }
-ul li a:hover{
+
+.navbutton:hover{
     color: #ff7200;
 }
+
 .search{
     width: 330px;
     float: left;
-    margin-left: 270px;
+    margin-left: 10px;
 }
 .srch{
     font-family: 'Times New Roman';
-    width: 200px;
+    width: 150px;
     height: 40px;
     background: transparent;
     border: 1px solid #ff7200;
-    margin-top: 13px;
+    margin-top: auto;
     color: #fff;
     border-right: none;
-    font-size: 16px;
+    font-size: 15px;
     float: left;
-    padding: 10px;
-    border-bottom-left-radius: 5px;
-    border-top-left-radius: 5px;
+    border-bottom-left-radius: 2px;
+    border-top-left-radius: 2px;
 }
 .btn{
     width: 100px;
     height: 40px;
     background: #ff7200;
     border: 2px solid #ff7200;
-    margin-top: 13px;
+    margin-top: auto;
     color: #fff;
     font-size: 15px;
     border-bottom-right-radius: 5px;
@@ -252,16 +260,16 @@ ul li a:hover{
     ul li{
         margin-left: 60px;
     }
-    ul li a{
+    .navbutton{
        font-size: 1.6vw; 
     }
     .search{
         margin-top: 3px;
-        margin-left: 290px;
+        margin-left: 10px;
     }
     .srch{
         height: 40px;
-        width: 190px;
+        width: 150px;
         font-size: 14px;
     }
     .btn{
@@ -367,16 +375,16 @@ ul li a:hover{
     ul li{
         margin-left: 60px;
     }
-    ul li a{
+    .navbutton{
        font-size: 2vw; 
     }
     .search{
         margin-top: -20px;
-        margin-left: 60px;   
+        margin-left: 10px;   
     }   
     .srch{
         height: 30px;
-        width: 160px;
+        width: 150px;
         font-size: 12px;
     }
     .btn{
@@ -443,7 +451,7 @@ ul li a:hover{
     ul li {
         margin-left: 50px;
     }
-    ul li a{
+    .navbutton{
         font-size: 2vw;
     }   
 }
@@ -456,16 +464,18 @@ ul li a:hover{
     }
     ul{
         margin-top: -25px;
+        justify-content: left;
     }
     ul li {
         margin-left: 42px;
+        justify-content: left;
     }
-    ul li a{
+    .navbutton{
         font-size: 2vw;
     }  
     .search{
         margin-top: -40px;
-        margin-left: 38px;
+        margin-left: 10px;
     } 
 
 }

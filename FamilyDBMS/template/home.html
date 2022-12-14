@@ -18,30 +18,21 @@
 
             <div class="menu">
                 <ul>
-                    <li><a href="#">HOME</a></li>
-                    <li><a href="#">ABOUT</a></li>
-                    <li><a href="#">SERVICE</a></li>
-                    <li><a href="#">DESIGN</a></li>
-                    <li><a href="#">CONTACT</a></li>
+                    <li><button name="homebutton" class="navbutton" type="submit" onclick="location.href='{% url "home" %}'">HOME</button></li>
+                    <li><button name="aboutbutton" class="navbutton" type="submit">ABOUT</button></li>
+                    <li><button name="contactbutton" class="navbutton" type="submit">CONTACT</button></li>
                 </ul>
             </div>
 
-            <div class="search">
-                <input class="srch" type="search" name="" placeholder="Type To text">
-                <a href="#"> <button class="btn">Search</button></a>
-            </div>
+            
 
         </div> 
         <div class="content">
-            <h1>Web Design & <br><span>Development</span> <br>Course</h1>
-            <p class="par">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt neque 
-                 expedita atque eveniet <br> quis nesciunt. Quos nulla vero consequuntur, fugit nemo ad delectus 
-                <br> a quae totam ipsa illum minus laudantium?</p>
-
-                <button class="cn"><a href="#">JOIN US</a></button>
+            <h1>Family DataBase<br><span>Management</span> <br>System</h1>
+            <p class="par">A one stop website to manage all the details of your beloved ones.<br>Don't remember your relative's address?<br>Don't remember their phone number to invite them for an event close to your heart? 
+                <br>or, are you bad at remembering birthdays and anniversaries?<br> Let the Family Database take care of that for you</p>
 
                 <div class="form">
-                    <h2>Login Here</h2>
                     <form action="/famapp/accounts/login/">
                         <center>
                             <p></p>
