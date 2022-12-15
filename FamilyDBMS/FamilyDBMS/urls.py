@@ -22,6 +22,7 @@ admin.autodiscover()
 urlpatterns = [
     path('', views.home, name="home"),
     path('famapp/home/',views.FamHome, name="famHome"),
+    path('famapp/home/DataBase/',views.DataBase, name="DataBase"),
     path('famapp/', include('famapp.urls')),
     path('admin/', admin.site.urls),
 ]

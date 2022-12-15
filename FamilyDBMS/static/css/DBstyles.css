@@ -5,7 +5,7 @@
 
 .main{
     width: 100%;
-    background-image: url("../images/HomePageBG.jpg");
+    background-image: url("../images/DBpageBG.jpg");
     background-position: center;
     background-size: cover;
     height: 100vh;
@@ -14,7 +14,7 @@
     width: 100%;
     height: 100px;
     margin: auto;
-    background-color: rgba(64, 0, 255, 0.104);
+    background-color: rgba(0, 0, 0, 0.333);
 }
 .icon{
     width: 200px;
@@ -65,25 +65,6 @@ ul li{
     color: #ff7200;
 }
 
-.search{
-    width: 330px;
-    float: left;
-    margin-left: 10px;
-}
-.srch{
-    font-family: 'Times New Roman';
-    width: 150px;
-    height: 40px;
-    background: transparent;
-    border: 1px solid #ff7200;
-    margin-top: auto;
-    color: #fff;
-    border-right: none;
-    font-size: 15px;
-    float: left;
-    border-bottom-left-radius: 2px;
-    border-top-left-radius: 2px;
-}
 .btn{
     width: 100px;
     height: 40px;
@@ -103,9 +84,7 @@ ul li{
 .btn:focus{
     outline: none;
 }
-.srch:focus{
-    outline: none;
-}
+
 .content{
     width: 1200px;
     height: auto;
@@ -119,7 +98,6 @@ ul li{
     font-family: Arial;
     letter-spacing: 1.2px;
     line-height: 30px;
-    font-weight: bold;
 }
 .content h1{
     font-family: 'Times New Roman';
@@ -153,80 +131,12 @@ ul li{
     color: #ff7200;
     font-size: 65px
 }
-.form{
-    width: 250px;
-    height: 380px;
-    background: linear-gradient(to top, rgba(0,0,0,0.8)50%,rgba(0,0,0,0.8)50%);
-    position: absolute;
-    top: -20px;
-    left: 870px;
-    transform: translate(0%,-5%);
-    border-radius: 10px;
-    padding: 25px;
-}
-.form h2{
-    width: 220px;
-    font-family: sans-serif;
-    text-align: center;
-    color: #ff7200;
-    font-size: 22px;
-    background-color: #fff;
-    border-radius: 10px;
-    margin: 2px;
-    padding: 8px;
-}
-.form input{
-    width: 240px;
-    height: 35px;
-    background: transparent;
-    border-bottom: 1px solid #ff7200;
-    border-top: none;
-    border-right: none;
-    border-left: none;
-    color: #fff;
-    font-size: 15px;
-    letter-spacing: 1px;
-    margin-top: 30px;
-    font-family: sans-serif;
-}
-.form input:focus{
-    outline: none;
-}
+
 ::placeholder{
     color: #fff;
     font-family: Arial;
 }
-.btnn{
-    width: 240px;
-    height: 40px;
-    background: #ff7200;
-    border: none;
-    margin-top: 30px;
-    font-size: 18px;
-    border-radius: 10px;
-    cursor: pointer;
-    color: #fff;
-    transition: 0.4s ease;
-}
-.btnn:hover{
-    background: #fff;
-    color: #ff7200;
-}
-.btnn a{
-    text-decoration: none;
-    color: #000;
-    font-weight: bold;
-}
-.form .link{
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 17px;
-    padding-top: 20px;
-    text-align: center;
-}
-.form .link a{
-    text-decoration: none;
-    color: #ff7200;
-}
+
 .liw{
     padding-top: 15px;
     padding-bottom: 10px;
@@ -264,15 +174,6 @@ ul li{
     .navbutton{
        font-size: 1.6vw; 
     }
-    .search{
-        margin-top: 3px;
-        margin-left: 10px;
-    }
-    .srch{
-        height: 40px;
-        width: 150px;
-        font-size: 14px;
-    }
     .btn{
         height:40px;
         width: 80px;
@@ -303,38 +204,7 @@ ul li{
         padding-left: 20px;
         height: 180vh;
     }
-    .form{
-        margin-left: -30px;
-        width: 250px;
-        height: 370px;
-        background: linear-gradient(to top, rgba(0,0,0,0.8)50%,rgba(0,0,0,0.8)50%);
-        position: absolute;
-        top: 420px;
-        left: 50px;
-        transform: translate(0%,-5%);
-        border-radius: 10px;
-        padding: 25px;
-    }
-    .form input{
-        width: 240px;
-        height: 35px;
-        background: transparent;
-        border-bottom: 1px solid #ff7200;
-        border-top: none;
-        border-right: none;
-        border-left: none;
-        color: #fff;
-        font-size: 15px;
-        letter-spacing: 1px;
-        margin-top: 30px;
-        font-family: sans-serif;
-    }
-    .btnn a{
-        font-size: 16px;
-    }
-    .form .link a{
-        font-size: 16px;
-    }
+    
 }
 
 @media screen and (max-width: 830px){
@@ -379,15 +249,6 @@ ul li{
     .navbutton{
        font-size: 2vw; 
     }
-    .search{
-        margin-top: -20px;
-        margin-left: 10px;   
-    }   
-    .srch{
-        height: 30px;
-        width: 150px;
-        font-size: 12px;
-    }
     .btn{
         height:30px;
         width: 70px;
@@ -395,38 +256,6 @@ ul li{
     .main{
         padding-left: 20px;
         height: 180vh;
-    }
-    .form{
-        margin-left: -30px;
-        width: 250px;
-        height: 370px;
-        background: linear-gradient(to top, rgba(0,0,0,0.8)50%,rgba(0,0,0,0.8)50%);
-        position: absolute;
-        top: 430px;
-        left: 50px;
-        transform: translate(0%,-5%);
-        border-radius: 10px;
-        padding: 25px;
-    }
-    .form input{
-        width: 240px;
-        height: 35px;
-        background: transparent;
-        border-bottom: 1px solid #ff7200;
-        border-top: none;
-        border-right: none;
-        border-left: none;
-        color: #fff;
-        font-size: 15px;
-        letter-spacing: 1px;
-        margin-top: 30px;
-        font-family: sans-serif;
-    }
-    .btnn a{
-        font-size: 16px;
-    }
-    .form .link a{
-        font-size: 16px;
     }
 }
 
@@ -436,10 +265,6 @@ ul li{
     .content{
         margin-top: 80px;
         margin-left: 20px;
-    }
-    .search{
-        margin-top: -40px;
-        margin-left: 42px;
     }
     .logo{
         margin-left: 180px;
@@ -474,9 +299,4 @@ ul li{
     .navbutton{
         font-size: 2vw;
     }  
-    .search{
-        margin-top: -40px;
-        margin-left: 10px;
-    } 
-
 }

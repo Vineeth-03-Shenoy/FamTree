@@ -9,6 +9,9 @@ def home(request):
 def FamHome(request):
     return render(request, "familyHOME.html")
 
+def DataBase(request):
+    return render(request, "database.html")
+
 def insertNewMember(request):
     today = datetime.datetime.now().date()
     return render(request, "famapp.html", {"today":today})
