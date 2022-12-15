@@ -108,11 +108,6 @@ LOGIN
     width: min(5vw, 30px);
 }
 
-.social-btn:hover{
-    border: solid 1px var(--blue-color);
-    padding: 9px;
-}
-
 .form-divider{
     position: relative;
 }
