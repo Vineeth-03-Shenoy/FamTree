@@ -39,11 +39,11 @@ def ID_Creator(Fname,name,Lname,Dob,coll_val):
     else: 
         return Exception
 
-'''def ID_Collison_Detection(ID):
+def ID_Collison_Detection(ID):
     mycursor.execute("SELECT ID FROM family_member")
     myresult = mycursor.fetchall()
     if ID in myresult:
-        return True'''
+        return True
 
 def FM_Insert():
     fam_MemberTable()    
@@ -150,13 +150,14 @@ def tupleToString(Tup):
         st = st + item
     return st
 
-def parentsFinder(source,target):
+def parentsFinder(source):
     mycursor.execute('USE dummy')
     mycursor.execute("SELECT Father_ID from parents WHERE ID=%s",(source,))
     targetID=mycursor.fetchone()
     targetID1=tupleToString(targetID)
-    if target==targetID1:
-        return 'Father',True
+    if len(targetID)!=0:
+        targetID1=tupleToString(targetID)
+        return 'Child',True
     else:
         mycursor.execute("SELECT Mother_ID from parents WHERE ID=%s",(source,))
         targetID=mycursor.fetchone()
@@ -166,6 +167,15 @@ def parentsFinder(source,target):
     return targetID1+targetID2,False
 
 
+def childFinder(source,target):
+    mycursor.execute('USE dummy')
+    mycursor.execute("SELECT ID from parents WHERE Father_ID=%s OR Mother_ID=%s",(source,source,))
+    targetID=mycursor.fetchone()
+    if len(targetID)!=0:
+        targetID1=tupleToString(targetID)
+        if target==targetID1:
+            return 'Child',True
+    return targetID1,False
 
 
 def relationFinder(source,target):
@@ -173,7 +183,11 @@ def relationFinder(source,target):
     foundTarget=False
     relationship=''
     while foundTarget==False:
-        relationship,foundTarget=parentsFinder(source,target)
+        relationship,sourceParents=parentsFinder(source)
+        if foundTarget==True:
+            print(source+'<---'+relationship+'---'+target) 
+            break
+        relationship,foundTarget=childFinder(source,target)
         if foundTarget==True:
             print(source+'<---'+relationship+'---'+target) 
             break
