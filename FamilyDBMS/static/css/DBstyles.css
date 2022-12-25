@@ -134,6 +134,11 @@ ul li{
     font-size: 65px
 }
 
+.succesmsg{
+    color: #fff;
+    font-family: "Arial";
+}
+
 .form-divider{
     position: relative;
 }

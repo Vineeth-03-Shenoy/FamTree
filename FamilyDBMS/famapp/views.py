@@ -1,7 +1,6 @@
 import datetime
 from django.shortcuts import render
 from django.http import HttpResponse
-from .forms import NewMemberForm, DeleteMemberForm, SearchMemberForm
 from .models import Family_Member
 
 # Create your views here.
@@ -16,39 +15,48 @@ def DataBase(request):
 
 def NewMember(request):
     if request.method=='POST':
-        form = NewMemberForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return render(FamHome)
-    form = NewMemberForm()
-    return render(request, "insertdb.html", {'form': form})
+        Fname = request.POST['Fname']
+        Name = request.POST['Name']
+        Lname = request.POST['Lname']
+        DoB = request.POST['DoB']
+        Gender = request.POST['Gender']
+
+        collval=0
+        while collval!=5:
+            ID = ID_Creator(Fname.upper(),Name.upper(),Lname.upper(),DoB,collval)
+            try:
+                obj=Family_Member.objects.get(FamMemberID=ID)
+                collval+=1
+            except Family_Member.DoesNotExist:
+                FamMemberID=ID
+                break
+
+        if collval==5:
+            print("ID could not be genrated, please contact admin",Fname,Name,Lname,DoB,Gender)
+
+        ins = Family_Member(FamMemberID=FamMemberID, Fname=Fname,Name=Name,Lname=Lname,DoB=DoB,Gender=Gender)
+        ins.save()
+        return render(request, "insert successfull.html", { 'FamMemberID': FamMemberID })
+    return render(request, "insertdb.html")
 
 def DeleteMember(request):
-    if request.method=='GET':
-        form = DeleteMemberForm(request.GET)
-        if form.is_valid():
-            instance = Family_Member.objects.filter(FamMemberID=form.FamMemberID)
-            instance.delete() 
-            return render(FamHome)
-    form = DeleteMemberForm()
-    return render(request, "deletemember.html", {'form':form}) 
+    if request.method=='POST':
+        FamMemberID=request.POST['FamMemberID']
+        try:
+            ins=Family_Member.objects.get(FamMemberID=FamMemberID)
+            print(ins)
+            ins.delete()
+            return render(request, "delete successfull.html", { 'FamMemberID': FamMemberID+' Deleted' })
+        except Family_Member.DoesNotExist:
+            return render(request, "delete successfull.html", { 'FamMemberID': FamMemberID+' Does Not Exist.!! If you think it exists, Check ID and enter again (make sure the ID is in Uppercase while entering.).' })
+        
+    return render(request, "deletemember.html") 
 
 def ViewPage(request):
     return render(request, "mainviewpage.html")
 
 def ViewSearchPage(request):
-    questions=None
-    if request.GET.get('FamMemberID'):
-        search = request.GET.get('FamMemberID')
-        member = Family_Member.objects.filter(query__icontains=search)
-
-        '''name = request.GET.get('name')
-        query = Queries.object.create(query=search, user_id=name)
-        query.save()'''
-
-    return render(request, 'searchmember.html',{
-        'questions': questions,
-    })
+    return render(request, "searchmember.html")
 
 def ViewDBPage(request):
     return render(request, "ViewDB.html")
@@ -58,3 +66,30 @@ def personalInfoInsert():
 
 def insertParentsInfo():
     return None
+
+
+
+
+def ID_Creator(Fname,name,Lname,Dob,coll_val):
+    firname = Fname[0]+Fname[(len(Fname)//2)-1]+Fname[len(Fname)-1]
+    lastname = Lname[0]+Lname[(len(Lname)//2)-1]+Lname[len(Lname)-1]
+    if coll_val==0:                                                                     #for the first time
+        midname = name[0]+name[(len(name)//2)-1]+name[len(name)-1]
+        ID = Dob[:4]+firname+midname+lastname+Dob[5:7]+Dob[8:10]
+        return ID
+    elif coll_val==1:
+        midname = name[0]+name[(len(name)//2)-2]+name[len(name)-1]
+        ID = Dob[:4]+firname+midname+lastname+Dob[5:7]+Dob[8:10]
+        return ID
+    elif coll_val==2:
+        midname = name[0]+name[(len(name)//2)]+name[len(name)-1]
+        ID = Dob[:4]+firname+midname+lastname+Dob[5:7]+Dob[8:10]
+        return ID 
+    elif coll_val==3:
+        midname = name[0]+name[(len(name)//2)+1]+name[len(name)-1]
+        ID = Dob[:4]+firname+midname+lastname+Dob[5:7]+Dob[8:10]
+        return ID
+    elif coll_val==4:
+        midname = name[0]+name[(len(name)//2)+2]+name[len(name)-1]
+        ID = Dob[:4]+firname+midname+lastname+Dob[5:7]+Dob[8:10]
+        return ID
