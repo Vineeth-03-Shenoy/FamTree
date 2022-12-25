@@ -1,0 +1,51 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Database Management System</title>
+    <link rel="stylesheet" href="{% static 'css/Homestyles.css' %}">
+</head>
+<body>
+    {% block content %} 
+
+    <div class="main">
+        <div class="navbar">
+            <div class="icon">
+                <h2 class="logo">Family DataBase</h2>
+            </div>
+
+            <div class="menu">
+                <ul>
+                    <li><button name="button" class="navbutton" type="submit" onclick="location.href='{% url "famHome" %}'">HOME</button></li>
+                    <li><button name="FamilyDBbutton" class="navbutton" type="submit" onclick="location.href='{% url "DataBase" %}'">DataBase</button></li>
+                    <li><button name="eventbutton" class="navbutton" type="submit">Event Manager</button></li>
+                    <li><button name="aboutbutton" class="navbutton" type="submit">ABOUT</button></li>
+                    <li><button name="contactbutton" class="navbutton" type="submit">CONTACT</button></li>
+
+                    <li>
+                        {% if user.is_authenticated %} 
+                            <form action="/famapp/accounts/signup/" method="post">
+                            {% csrf_token %}
+                            <button class="btn" type="submit">Log Out</button>
+                            </form>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+            
+
+            
+
+        </div> 
+        <div class="content">
+            <h1>Family DataBase<br><span>Management</span> <br>System</h1>
+            <p class="par">A one stop website to manage all the details of your beloved ones.<br>Don't remember your relative's address?<br>Don't remember their phone number to invite them for an event close to your heart? 
+                <br>or, are you bad at remembering birthdays and anniversaries?<br> Let the Family Database take care of that for you</p>
+        </div>
+    </div>
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    {% endblock content %}
+</body>
+</html>

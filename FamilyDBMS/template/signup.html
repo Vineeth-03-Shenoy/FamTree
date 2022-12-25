@@ -1,0 +1,55 @@
+
+{% extends './base.html' %}
+{% load static %}
+<html class="html">
+<head>
+    <title>Sign Up</title>
+    
+</head>
+
+<body class="body">
+
+{% block content %}
+        <center>
+            <div class="card center spacer">
+                <h1 class="title text-center">Register</h1>
+                <form method="post" action="/famapp/accounts/signup/" class="login-form spacer" id="signup-form">
+                    {% csrf_token %} 
+                    <div class="input-group">
+                        <img class="icon input-icon" src="{% static 'images/profile-user.svg' %}" alt="">
+                        {{ form.username }}
+                    </div>
+                    <div class="input-group">
+                        <img class="icon input-icon" src="{% static 'images/envelope.png' %}" alt="">
+                        {{ form.email }}
+                        
+                    </div>
+                    <div class="input-group">
+                        <img class="icon input-icon" src="{% static 'images/key.svg' %}" alt="">
+                        {{ form.password1 }}
+                        
+                    </div>
+                    <div class="input-group">
+                        <img class="icon input-icon" src="{% static 'images/key.svg' %}" alt="">
+                        {{ form.password2 }}
+                    </div>
+                    <input type="submit" class="submit" value="Signup">
+                </form>
+                <form action="/famapp/accounts/login/">
+                    <center>Already have an account?&nbsp;<button class="linkbutton">Log in</button></center>
+                    <br><br>
+                </form>
+            </div>
+            
+            <!--<form action="famapp/accounts/forgot_password/"">
+                <button class="linkbutton">forgot password?</button>
+                <br><br>
+            </form>-->
+        
+        </center>
+
+
+{% endblock content %} 
+
+</body>
+</html>
