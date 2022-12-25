@@ -16,7 +16,7 @@
             <div class="menu">
             <ul>
                 <li><button name="button" class="navbutton" type="submit" onclick="location.href='{% url "famHome" %}'">HOME</button></li>
-                <li><button name="newmemberbutton" class="navbutton" type="submit" onclick="location.href='{% url "ViewPage" %}'">BACK</button></li>
+                <li><button name="newmemberbutton" class="navbutton" type="submit" onclick="location.href='{% url "ViewSearchPage" %}'">BACK</button></li>
                 <li><button name="newmemberbutton" class="navbutton" type="submit" onclick="location.href='{% url "NewMember" %}'">New Member</button></li>
                 <li><button name="updatebutton" class="navbutton" type="submit">Update Details</button></li>
                 <li><button name="personalbutton" class="navbutton" type="submit">Personal Info</button></li>
@@ -32,27 +32,15 @@
             </div>
         </div>
             <center>
-                <div class="card center spacer">
-                    <h1 class="title text-center">Search Member</h1>
-                <form method="post" class="login-form spacer" id="searchMember">
-                    {% csrf_token %} 
-                    <div class="input-group">
-                        <div class="input-group">
-                            <input 
-                            required="", 
-                            name="FamMemberID", 
-                            id="FamMemberID", 
-                            type="text", 
-                            class="form-input" , 
-                            placeholder="Enter FamMemberID" , 
-                            maxlength='20', 
-                            minlength='17'>
-                        </div>
+                    <div class="card center spacer">
+                        <h1 class="title text-center">Details of : <p class="par"> {{ FamMember.FamMemberID }}</p></h1>
+                        <p class="par">Name: {{ FamMember.Fname }} {{ FamMember.Name }} {{ FamMember.Lname }} <br>
+                        Date of Birth: {{ FamMember.DoB }} <br>
+                        Gender: {{ FamMember.Gender }}</p>
+                    
                     </div>
-                    <input type="submit" class="btn" value="SUBMIT">
-                </form>
+
             </center>
-            </div>
         </div>
     </div>
     {% endblock content %} 

@@ -92,10 +92,13 @@ ul li{
     color:#fff;
     position: relative;
 }
-.content .par{
-    padding-left: 20px;
-    padding-bottom: 25px;
+.par{
+    height: auto;
+    margin: auto;
+    color:#fff;
+    position: relative;
     font-family: Arial;
+    font-size: 125%;
     letter-spacing: 1.2px;
     line-height: 30px;
 }

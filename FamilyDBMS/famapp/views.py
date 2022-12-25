@@ -56,6 +56,13 @@ def ViewPage(request):
     return render(request, "mainviewpage.html")
 
 def ViewSearchPage(request):
+    if request.method=='POST':
+        FamMemberID=request.POST['FamMemberID']
+        try:
+            FamMember=Family_Member.objects.get(FamMemberID=FamMemberID)
+            return render(request, "searchOutput.html", { 'FamMember' : FamMember })
+        except Family_Member.DoesNotExist:
+            return render(request, "searchOutput.html", { 'FamMemberID': FamMemberID +' Does Not Exist.!! If you think it exists, Check ID and enter again (make sure the ID is in Uppercase while entering.).' })
     return render(request, "searchmember.html")
 
 def ViewDBPage(request):
