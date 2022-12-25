@@ -10,6 +10,7 @@ from famapp.views import home, FamHome
 
 #signup_view method to handle HTTP requests for sign up
 def signup_view(request):
+    form = SignUpForm(request.POST)
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
