@@ -89,7 +89,7 @@ ul li{
     width: 1200px;
     height: auto;
     margin: auto;
-    color: #fff;
+    color:#fff;
     position: relative;
 }
 .content .par{
@@ -100,11 +100,12 @@ ul li{
     line-height: 30px;
 }
 .content h1{
-    font-family: 'Times New Roman';
+    font-family: 'Arial';
     font-size: 50px;
     padding-left: 20px;
     margin-top: 9%;
     letter-spacing: 2px;
+    color:#ff7200;
 }
 .content .cn{
     width: 160px;
@@ -127,13 +128,32 @@ ul li{
 .cn:hover{
     background-color: #fff;
 }
+
 .content span{
     color: #ff7200;
     font-size: 65px
 }
 
+.form-divider{
+    position: relative;
+}
+
+.form-input{
+    padding: 10px;
+    width: 100%;
+    border-radius: 10px;
+    text-indent: 15%;
+}
+
+.form-input:hover, .form-input:focus{
+    border: solid 2px var(--blue-color);
+}
+
+.input-group{
+    position: relative;
+}
 ::placeholder{
-    color: #fff;
+    color: rgb(0, 0, 0);
     font-family: Arial;
 }
 
@@ -156,7 +176,38 @@ ul li{
 .icons ion-icon:hover{
     color: #ff7200;
 }
+.center{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+  
+.spacer > *{
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
 
+.card{
+      border-radius: 10px;
+      font-size:large;
+      box-shadow: 0 0 20px 8px rgba(0,0,0,0.1);
+      transition: all 0.3s ease-in-out;
+      width: 50%;
+      min-width: 320px;
+      padding: 5%;
+}
+  
+.title{
+    font-size: 200%;
+    text-transform: uppercase;
+    font-family: 'Arial';
+    color: #ff7200;
+}
+
+.text-center{
+      text-align: center;
+  }
 
 @media screen and (max-width:1200px) {
     /*Normal Screen*/

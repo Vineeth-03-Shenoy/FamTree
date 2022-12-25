@@ -9,7 +9,6 @@ class Family_Member(models.Model):
     DoB = models.DateField()
     DoD = models.DateField()
     Gender = models.CharField(max_length=2)
-    Password = models.CharField(max_length=20, null=False)
 
 class Couple_Family(models.Model):
     Couple_ID = models.CharField(max_length=20, primary_key=True)

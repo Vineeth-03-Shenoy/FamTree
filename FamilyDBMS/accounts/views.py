@@ -17,9 +17,6 @@ def signup_view(request):
             messages.success(request, 'Account created successfully')
             login(request, form)
             return redirect(FamHome)
-    else:
-        form = SignUpForm()
-
     return render(request, 'signup.html', {'form': form})
 
 
