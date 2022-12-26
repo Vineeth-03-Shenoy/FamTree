@@ -16,9 +16,8 @@
             <div class="menu">
             <ul>
                 <li><button name="button" class="navbutton" type="submit" onclick="location.href='{% url "famHome" %}'">HOME</button></li>
-                <li><button name="newmemberbutton" class="navbutton" type="submit" onclick="location.href='{% url "DataBase" %}'">BACK</button></li>
+                <li><button name="newmemberbutton" class="navbutton" type="submit" onclick="location.href='{% url "ViewPage" %}'">BACK</button></li>
                 <li><button name="newmemberbutton" class="navbutton" type="submit" onclick="location.href='{% url "NewMember" %}'">New Member</button></li>
-                <li><button name="deletebutton" class="navbutton" type="submit" onclick="location.href='{% url "DeleteMember" %}'">Delete Member</button></li>
                 <li><button name="updatebutton" class="navbutton" type="submit">Update Details</button></li>
                 <li><button name="personalbutton" class="navbutton" type="submit" onclick="location.href='{% url "PersonalInfo" %}'">Personal Info</button></li>
                 <li>
@@ -34,12 +33,27 @@
         </div>
             <center>
                 <div class="card center spacer">
-                    <h1 class="title text-center">VIEW</h1>
-                    <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "ViewSearchIDPage" %}'">Search member by ID</button>
-                    <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "ViewSearchNamePage" %}'">Search by Name</button>
-                    <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "ViewDBPage" %}'">View entire DataBase</button>
-                </div>
+                    <h1 class="title text-center">Search Member</h1>
+                <form method="post" class="login-form spacer" id="searchMember">
+                    {% csrf_token %} 
+                    <div class="input-group">
+                        <div class="input-group">
+                            <input 
+                            required="", 
+                            name="FamMemberID", 
+                            id="FamMemberID", 
+                            type="text", 
+                            class="form-input" , 
+                            placeholder="Enter FamMemberID" , 
+                            maxlength='20', 
+                            minlength='17'>
+                        </div>
+                    </div>
+                    <input type="submit" class="btn" value="SUBMIT">
+                </form>
+            
             </center>
+            </div>
         </div>
     </div>
     {% endblock content %} 

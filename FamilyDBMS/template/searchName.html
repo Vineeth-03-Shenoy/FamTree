@@ -19,7 +19,7 @@
                 <li><button name="newmemberbutton" class="navbutton" type="submit" onclick="location.href='{% url "ViewPage" %}'">BACK</button></li>
                 <li><button name="newmemberbutton" class="navbutton" type="submit" onclick="location.href='{% url "NewMember" %}'">New Member</button></li>
                 <li><button name="updatebutton" class="navbutton" type="submit">Update Details</button></li>
-                <li><button name="personalbutton" class="navbutton" type="submit">Personal Info</button></li>
+                <li><button name="personalbutton" class="navbutton" type="submit" onclick="location.href='{% url "PersonalInfo" %}'">Personal Info</button></li>
                 <li>
                     {% if user.is_authenticated %} 
                         <form action="/famapp/accounts/signup/" method="post">
@@ -34,23 +34,7 @@
             <center>
                 <div class="card center spacer">
                     <h1 class="title text-center">Search Member</h1>
-                <form method="post" class="login-form spacer" id="searchMember">
-                    {% csrf_token %} 
-                    <div class="input-group">
-                        <div class="input-group">
-                            <input 
-                            required="", 
-                            name="FamMemberID", 
-                            id="FamMemberID", 
-                            type="text", 
-                            class="form-input" , 
-                            placeholder="Enter FamMemberID" , 
-                            maxlength='20', 
-                            minlength='17'>
-                        </div>
-                    </div>
-                    <input type="submit" class="btn" value="SUBMIT">
-                </form>
+                
                 <form method="post" class="login-form spacer" id="searchMember">
                     {% csrf_token %} 
                     <div class="input-group">
