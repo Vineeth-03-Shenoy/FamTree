@@ -51,6 +51,23 @@
                     </div>
                     <input type="submit" class="btn" value="SUBMIT">
                 </form>
+                <form method="post" class="login-form spacer" id="searchMember">
+                    {% csrf_token %} 
+                    <div class="input-group">
+                        <div class="input-group">
+                            <input 
+                            required="", 
+                            name="Name", 
+                            id="Name", 
+                            type="text", 
+                            class="form-input" , 
+                            placeholder="Enter Middle Name" , 
+                            maxlength='30', 
+                            minlength='2'>
+                        </div>
+                    </div>
+                    <input type="submit" class="btn" value="SUBMIT">
+                </form>
             </center>
             </div>
         </div>
