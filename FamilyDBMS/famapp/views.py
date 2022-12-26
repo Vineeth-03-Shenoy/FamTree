@@ -77,8 +77,11 @@ def personalInfoInsert():
 def insertParentsInfo():
     return None
 
+def eventmanager(request):
+    return render(request, "eventmanager.html")
 
-
+def Newevent(request):
+    return render(request, "newevent.html")
 
 def ID_Creator(Fname,name,Lname,Dob,coll_val):
     firname = Fname[0]+Fname[(len(Fname)//2)-1]+Fname[len(Fname)-1]
