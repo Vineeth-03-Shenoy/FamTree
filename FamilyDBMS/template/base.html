@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang=""en">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,15 +8,6 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <script src="{% static 'js/accountsscripts.js' %}" defer></script>
 </head>
-<body class="body">
-    <nav class="nav">
-        {% if user.is_authenticated %} 
-            <form action="/famapp/accounts/signup/" method="post">
-                {% csrf_token %}
-                <button class="linkbutton" type="submit">Log Out</button>
-            </form>
-        {% endif %} 
-    </nav>
 
     {% block content %}
     <h1> hello </h1>

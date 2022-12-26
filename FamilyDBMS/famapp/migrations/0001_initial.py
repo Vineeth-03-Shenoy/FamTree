@@ -40,7 +40,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Family_Member',
             fields=[
-                ('FamMemberID', models.CharField(max_length=20, primary_key=True, serialize=False)),
+                ('FamMemberID', models.CharField(max_length=20, primary_key=True, serialize=False,)),
                 ('Fname', models.CharField(max_length=30, null=False)),
                 ('Name', models.CharField(max_length=30, null=False)),
                 ('Lname', models.CharField(max_length=30, null=False)),

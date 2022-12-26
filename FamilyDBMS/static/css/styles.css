@@ -58,7 +58,7 @@ nav {
     transition: all 0.3s ease-in-out;
     width: 50%;
     min-width: 320px;
-    padding: 10%;
+    padding: 5%;
 }
 
 .text-center{
@@ -92,10 +92,6 @@ nav {
     background-color: var(--bl-color);
 }
 
-img{
-    max-width: 50px;
-    max-height: 50px;
-}
 
 /*####################
 LOGIN
@@ -106,33 +102,10 @@ LOGIN
     text-transform: uppercase;
 }
 
-.social-login{
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.social-btn{
-    display: flex;
-    align-items: center;
-    gap: 3px;
-    border: none;
-    padding: 10px;
-    border-radius: 10px;
-    font-weight: bold;
-    color: var(--bl-color);
-    cursor: pointer;
-}
-
 
 .icon{
     height: min(5vw, 30px);
     width: min(5vw, 30px);
-}
-
-.social-btn:hover{
-    border: solid 1px var(--blue-color);
-    padding: 9px;
 }
 
 .form-divider{

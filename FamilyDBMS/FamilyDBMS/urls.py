@@ -16,10 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from famapp import views
+
 admin.autodiscover()
 
 urlpatterns = [
-    path('', views.home),
+    path('', views.home, name="home"),
+    path('famapp/home/',views.FamHome, name="famHome"),
+    path('famapp/home/DataBase/',views.DataBase, name="DataBase"),
+    path('famapp/home/DataBase/NewMember/',views.NewMember, name="NewMember"),
+    path('famapp/home/DataBase/DeleteMember/',views.DeleteMember, name="DeleteMember"),
+    path('famapp/home/DataBase/ViewPage/',views.ViewPage, name="ViewPage"),
+    path('famapp/home/DataBase/ViewPage/Search/',views.ViewSearchPage, name="ViewSearchPage"),
+    path('famapp/home/DataBase/ViewPage/DB/',views.ViewDBPage, name="ViewDBPage"),
     path('famapp/', include('famapp.urls')),
     path('admin/', admin.site.urls),
 ]

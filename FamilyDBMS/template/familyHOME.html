@@ -18,11 +18,23 @@
 
             <div class="menu">
                 <ul>
-                    <li><button name="homebutton" class="navbutton" type="submit" onclick="location.href='{% url "home" %}'">HOME</button></li>
+                    <li><button name="button" class="navbutton" type="submit" onclick="location.href='{% url "famHome" %}'">HOME</button></li>
+                    <li><button name="FamilyDBbutton" class="navbutton" type="submit" onclick="location.href='{% url "DataBase" %}'">DataBase</button></li>
+                    <li><button name="eventbutton" class="navbutton" type="submit">Event Manager</button></li>
                     <li><button name="aboutbutton" class="navbutton" type="submit">ABOUT</button></li>
                     <li><button name="contactbutton" class="navbutton" type="submit">CONTACT</button></li>
+
+                    <li>
+                        {% if user.is_authenticated %} 
+                            <form action="/famapp/accounts/signup/" method="post">
+                            {% csrf_token %}
+                            <button class="btn" type="submit">Log Out</button>
+                            </form>
+                        {% endif %}
+                    </li>
                 </ul>
             </div>
+            
 
             
 
@@ -31,26 +43,9 @@
             <h1>Family DataBase<br><span>Management</span> <br>System</h1>
             <p class="par">A one stop website to manage all the details of your beloved ones.<br>Don't remember your relative's address?<br>Don't remember their phone number to invite them for an event close to your heart? 
                 <br>or, are you bad at remembering birthdays and anniversaries?<br> Let the Family Database take care of that for you</p>
-
-                <div class="form">
-                    <form action="/famapp/accounts/login/">
-                        <center>
-                            <p></p>
-                            <p class="par">Already have an account?&nbsp;</p>
-                            <button class="btnn">Log in</button>
-                        </center>
-                        <br><br>
-                    </form>
-                    <form action="/famapp/accounts/signup/">
-                        <p class="par">New User? click below to Sign Up </p>
-                        <center><button name="signup" class="btnn" >Sign Up</button></center>
-                    </form>
-                </div>
-                    </div>
-                </div>
         </div>
     </div>
-    <!--<script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>-->
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     {% endblock content %}
 </body>
 </html>
