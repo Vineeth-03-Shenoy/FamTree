@@ -23,6 +23,7 @@ urlpatterns = [
     path('', views.home, name="home"),
     path('famapp/home/',views.FamHome, name="famHome"),
     path('famapp/home/DataBase/',views.DataBase, name="DataBase"),
+    path('famapp/home/Eventmanager/',views.eventmanager, name="Eventmanager"),
     path('famapp/home/DataBase/NewMember/',views.NewMember, name="NewMember"),
     path('famapp/home/DataBase/DeleteMember/',views.DeleteMember, name="DeleteMember"),
     path('famapp/home/DataBase/ViewPage/',views.ViewPage, name="ViewPage"),

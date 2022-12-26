@@ -74,6 +74,8 @@ def personalInfoInsert():
 def insertParentsInfo():
     return None
 
+def eventmanager(request):
+    return render(request, "eventmanager.html")
 
 
 
