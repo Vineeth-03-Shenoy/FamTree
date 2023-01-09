@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="{% static 'css/DBstyles.css' %}">
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+             }
+             body{
+                min-height: 100vh;
+                background-color: #eee;
+                display: flex;
+                font-family: sans-serif;
+
+             }
+             .container{
+                margin: auto;
+                width: 500px;
+                max-width: 90%;
+             }
+             .container form{
+                width: 100%;
+                height: 100%;
+                padding: 20px;
+                background: white;
+                border-radius: 6px;
+                box-shadow: 0 8px 16px rgba(0,0,0,.3);
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+             }
+             .container form h1{
+                text-align: center;
+                margin-bottom: 24px;
+                color:#222;
+
+             }
+             .container form .form-control{
+                width: 100%;
+                height: 30px;
+                background: whitesmoke;
+                border-radius: 6px;
+                border: 1ps solid silver;
+                margin: 10px 0 10px 0;
+                padding: 0 10px;
+                
+             }
+             .container form .form1-control{
+                
+                background: whitesmoke;
+                border-radius: 6px;
+                border: 1ps solid silver;
+                margin: 10px 0 5px 0;
+                padding: 0 10px;
+                color:#222;
+             }
+             .container form .form2-control{
+                
+                background: whitesmoke;
+                border-radius: 6px;
+                border: 1ps solid silver;
+                margin: 10px 0 18px 0;
+                padding: 0 10px;
+                box-shadow: 0 8px 16px rgba(0,0,0,.3);
+                color:#222;
+             }
+             .container form .btn{
+                margin-left: 35%;
+                width: 120px;
+                height: 34px;
+                border: none;
+                outline: none;
+                background: green;
+                cursor: pointer;
+                font-size: 16px;
+                text-transform: uppercase;
+                color: white;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                border-radius: 4px;
+                transition: .3s;
+
+             }
+             .container form .btn:hover{
+                opacity: .7;
+             }
+             .abc{
+                font-family:monospace;
+                padding: 0 10px;
+                margin: 10px 0 5px 0;
+             }
+             .select{
+                padding: 2px 6px;
+                background: whitesmoke;
+                color:#222;
+                border-radius: 4px;
+                border: 1ps solid silver;
+                cursor: pointer;
+             }
+             
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <form >
+                <h1>Invitees for Event</h1>
+                <div class="form group"> 
+                    <label for="">Event ID</label><br>
+                    <input type="text"placeholder="Enter Event id"  class="form-control" required>
+                </div>
+                <div class="inputbox"> 
+                    <label for="">Invitee id </label><br>
+                    <input type="text"  placeholder="Enter Invitee id" onekeydown="validation()" class="form-control" required>
+                </div>
+                <input  class="btn" type="submit" name="submit" value="Submit">
+                
