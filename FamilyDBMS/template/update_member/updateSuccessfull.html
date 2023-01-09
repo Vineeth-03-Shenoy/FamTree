@@ -1,65 +1,28 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Family Database Management System</title>
-    <link rel="stylesheet" href="{% static 'css/DBstyles.css' %}">
-</head>
-<body class="body">
-    {% block content %} 
-    <div class="main">
-        <div class="navbar">
-            <div class="icon">
-                <h1 class="logo">The Database</h1>
-            </div>
-            <div class="menu">
-            <ul>
-                <li><button name="button" class="navbutton" type="submit" onclick="location.href='{% url "famHome" %}'">HOME</button></li>
-                <li><button name="newmemberbutton" class="navbutton" type="submit" onclick="location.href='{% url "NewMember" %}'">New Member</button></li>
-                <li><button name="deletebutton" class="navbutton" type="submit" onclick="location.href='{% url "DeleteMember" %}'">Delete Member</button></li>
-                <li><button name="viewbutton" class="navbutton" type="submit" onclick="location.href='{% url "ViewPage" %}'">View DB</button></li>
-                <li><button name="updatebutton" class="navbutton" type="submit" onclick="location.href='{% url "UpdateDetails" %}'">Update Details</button></li>
-                <li><button name="personalbutton" class="navbutton" type="submit" onclick="location.href='{% url "PersonalInfo" %}'">Personal Info</button></li>
-                <li><button name="personalbutton" class="navbutton" type="submit" onclick="location.href='{% url "InsertCouple" %}'">Register Couple</button></li>
-                <li>
-                    {% if user.is_authenticated %} 
-                        <form action="/famapp/accounts/signup/" method="post">
-                        {% csrf_token %}
-                        <button class="btn" type="submit">Log Out</button>
-                        </form>
-                    {% endif %}
-                </li>
-            </ul>
-            </div>
-        </div>
-            <center>
-                <div class="cardoutput spacer">
-                    <h1 class="title text">Successfully Updated Details</h1>
-                    <table>
-                        <thead>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Date of Birth</th>
-                            <th>Date of Demise</th>
-                            <th>Gender</th>
-                        </thead>
-                        <tbody>
-                            {% for data in FamMember %}
-                            <tr>
-                                <td>{{ data.FamMemberID }}</td>
-                                <td>{{ data.Fname }} {{ data.Name }} {{ data.Lname }}</td>
-                                <td>{{ data.DoB }}</td>
-                                <td>{{ data.DoD }}</td>
-                                <td>{{ data.Gender }}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                        <table>
-                </div>
-
-            </center>
-        </div>
+{% extends 'TheBaseDB.html' %}
+{% block content %}
+<center>
+    <div class="cardoutput spacer">
+        <h1 class="title text">Successfully Updated Details</h1>
+        <table>
+            <thead>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Date of Birth</th>
+                <th>Date of Demise</th>
+                <th>Gender</th>
+            </thead>
+            <tbody>
+                {% for data in FamMember %}
+                <tr>
+                    <td>{{ data.FamMemberID }}</td>
+                    <td>{{ data.Fname }} {{ data.Name }} {{ data.Lname }}</td>
+                    <td>{{ data.DoB }}</td>
+                    <td>{{ data.DoD }}</td>
+                    <td>{{ data.Gender }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <table>
     </div>
-    {% endblock content %}
-</body>
+</center>
+{% endblock content %}
