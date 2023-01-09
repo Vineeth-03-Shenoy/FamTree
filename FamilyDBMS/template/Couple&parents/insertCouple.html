@@ -1,4 +1,3 @@
-
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -9,12 +8,11 @@
 </head>
 <body class="body">
     {% block content %} 
-    <div class="main" background-image: url = "../images/LLRR4.png" >
+    <div class="main">
         <div class="navbar">
             <div class="icon">
                 <h1 class="logo">The Database</h1>
             </div>
-
             <div class="menu">
             <ul>
                 <li><button name="button" class="navbutton" type="submit" onclick="location.href='{% url "famHome" %}'">HOME</button></li>
@@ -35,13 +33,48 @@
             </ul>
             </div>
         </div>
-        <div class="content">
-            <h1>The<br><span>DATABASE</span><br></h1>
-            <p class="par">This is where you can register a new family member into the database<br>
-                You can also delete or update the details of registered members<br>
-                You can also save the personal details like Phone Number and address of registered members<br>
-                You can retrieve and view all of these details as well<br>
-            </p>
+            <center>
+                <div class="cardoutput spacer">
+                    <h1 class="title text-center">Register Couple</h1>
+                    <form method="post" action="/famapp/home/DataBase/CoupleRegister/" class="login-form spacer" id="insertcouple">
+                        {% csrf_token %} 
+                        <div class="input-group">
+                            <input 
+                            required="", 
+                            name="Hus", 
+                            id="Hus", 
+                            type="text", 
+                            class="form-input" , 
+                            placeholder="Enter ID of Husband" , 
+                            maxlength='20', 
+                            minlength='17'>
+                        </div>
+                        <div class="input-group">
+                            <input
+                            required="", 
+                            name="Wife",
+                            id="Wife",
+                            type="text",
+                            class="form-input",
+                            placeholder="Enter ID of Wife",
+                            maxlength='20', 
+                            minlength='17'>
+                        </div>
+                        <p class="par">Enter Date of Marriage:</p>
+                        <div class="input-group">
+                            <input 
+                                name="Wed_ann",
+                                id="Wed_ann",
+                                type="date",
+                                class="form-input">
+                        </div>
+                        <p class="par">*Both of them must, first be registered as Family Members</p>
+                        <input type="submit" class="btn" value="SUBMIT">
+                    </form>
+                    
+                </div>
+
+            </center>
         </div>
     </div>
     {% endblock content %} 

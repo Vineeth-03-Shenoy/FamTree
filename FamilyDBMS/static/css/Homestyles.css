@@ -10,6 +10,11 @@
     background-size: cover;
     height: 100vh;
 }
+
+body{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
 .navbar{
     width: 100%;
     height: 100px;
@@ -24,7 +29,7 @@
 .logo{
     color: #ff7200;
     font-size: 35px;
-    font-family: Arial;
+    
     padding-left: 20px;
     float: left;
     padding-top: 10px;
@@ -55,7 +60,7 @@ ul li{
     background-color: transparent;
     border: transparent;
     color: #fff;
-    font-family: Arial;
+    
     font-weight: bold;
     font-size: 20px;
     transition: 0.4s ease-in-out;
@@ -71,7 +76,7 @@ ul li{
     margin-left: 10px;
 }
 .srch{
-    font-family: 'Times New Roman';
+    
     width: 150px;
     height: 40px;
     background: transparent;
@@ -85,27 +90,24 @@ ul li{
     border-top-left-radius: 2px;
 }
 .btn{
-    width: 100px;
-    height: 40px;
+    width: 110px;
+    height: 55px;
     background: #ff7200;
     border: 2px solid #ff7200;
     margin-top: auto;
     color: #fff;
-    font-size: 15px;
-    border-bottom-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    font-size: 13px;
+    
+    border-radius: 30px ;
     transition: 0.2s ease;
     cursor: pointer;
 }
 .btn:hover{
     color: #000;
+    background-color: #fff;
+    font-weight: bolder;
 }
-.btn:focus{
-    outline: none;
-}
-.srch:focus{
-    outline: none;
-}
+
 .content{
     width: 1200px;
     height: auto;
@@ -116,13 +118,13 @@ ul li{
 .content .par{
     padding-left: 20px;
     padding-bottom: 25px;
-    font-family: Arial;
+    
     letter-spacing: 1.2px;
     line-height: 30px;
     font-weight: bold;
 }
 .content h1{
-    font-family: 'Times New Roman';
+    
     font-size: 50px;
     padding-left: 20px;
     margin-top: 9%;
@@ -166,7 +168,7 @@ ul li{
 }
 .form h2{
     width: 220px;
-    font-family: sans-serif;
+    
     text-align: center;
     color: #ff7200;
     font-size: 22px;
@@ -187,14 +189,14 @@ ul li{
     font-size: 15px;
     letter-spacing: 1px;
     margin-top: 30px;
-    font-family: sans-serif;
+    
 }
 .form input:focus{
     outline: none;
 }
 ::placeholder{
     color: #fff;
-    font-family: Arial;
+    
 }
 .btnn{
     width: 240px;
@@ -218,7 +220,7 @@ ul li{
     font-weight: bold;
 }
 .form .link{
-    font-family: Arial, Helvetica, sans-serif;
+    
     font-size: 17px;
     padding-top: 20px;
     text-align: center;
@@ -327,7 +329,7 @@ ul li{
         font-size: 15px;
         letter-spacing: 1px;
         margin-top: 30px;
-        font-family: sans-serif;
+        
     }
     .btnn a{
         font-size: 16px;
@@ -420,7 +422,7 @@ ul li{
         font-size: 15px;
         letter-spacing: 1px;
         margin-top: 30px;
-        font-family: sans-serif;
+        
     }
     .btnn a{
         font-size: 16px;

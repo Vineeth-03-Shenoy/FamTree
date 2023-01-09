@@ -29,9 +29,12 @@ urlpatterns = [
     path('famapp/home/DataBase/DeleteMember/',views.DeleteMember, name="DeleteMember"),
     path('famapp/home/DataBase/ViewPage/',views.ViewPage, name="ViewPage"),
     path('famapp/home/DataBase/PersonalInfo/',views.personalInfoInsert, name="PersonalInfo"),
+    path('famapp/home/DataBase/PersonalInfo/personalInfoSearch',views.personalInfoSearch, name="personalInfoSearch"),
     path('famapp/home/DataBase/ViewPage/SearchID/',views.ViewSearchIDPage, name="ViewSearchIDPage"),
     path('famapp/home/DataBase/ViewPage/SearchName/',views.ViewSearchNamePage, name="ViewSearchNamePage"),
     path('famapp/home/DataBase/ViewPage/DB/',views.ViewDBPage, name="ViewDBPage"),
+    path('famapp/home/DataBase/UpdateDetails/',views.UpdateDetails, name="UpdateDetails"),
+    path('famapp/home/DataBase/CoupleRegister/',views.insertCoupleInfo,name="InsertCouple"),
     path('famapp/', include('famapp.urls')),
     path('admin/', admin.site.urls),
 ]

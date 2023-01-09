@@ -16,10 +16,12 @@
             <div class="menu">
             <ul>
                 <li><button name="button" class="navbutton" type="submit" onclick="location.href='{% url "famHome" %}'">HOME</button></li>
-                <li><button name="newmemberbutton" class="navbutton" type="submit" onclick="location.href='{% url "ViewPage" %}'">BACK</button></li>
                 <li><button name="newmemberbutton" class="navbutton" type="submit" onclick="location.href='{% url "NewMember" %}'">New Member</button></li>
-                <li><button name="updatebutton" class="navbutton" type="submit">Update Details</button></li>
+                <li><button name="deletebutton" class="navbutton" type="submit" onclick="location.href='{% url "DeleteMember" %}'">Delete Member</button></li>
+                <li><button name="viewbutton" class="navbutton" type="submit" onclick="location.href='{% url "ViewPage" %}'">View DB</button></li>
+                <li><button name="updatebutton" class="navbutton" type="submit" onclick="location.href='{% url "UpdateDetails" %}'">Update Details</button></li>
                 <li><button name="personalbutton" class="navbutton" type="submit" onclick="location.href='{% url "PersonalInfo" %}'">Personal Info</button></li>
+                <li><button name="personalbutton" class="navbutton" type="submit" onclick="location.href='{% url "InsertCouple" %}'">Register Couple</button></li>
                 <li>
                     {% if user.is_authenticated %} 
                         <form action="/famapp/accounts/signup/" method="post">
@@ -32,14 +34,13 @@
             </div>
         </div>
             <center>
-                    <div class="card center spacer">
-                        <h1 class="title text-center">Details of : <p class="par">{{ FamMember.FamMemberID }}</p></h1>
-                        <p class="par">Name: {{ FamMember.Fname }} {{ FamMember.Name }} {{ FamMember.Lname }} <br>
-                        Date of Birth: {{ FamMember.DoB }} <br>
-                        Gender: {{ FamMember.Gender }}</p>
-                    
-                    </div>
-
+                <div class="card center spacer">
+                    <h1 class="title text-center">VIEW</h1>
+                    <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "ViewSearchIDPage" %}'">Search member by ID</button>
+                    <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "ViewSearchNamePage" %}'">Search by member Name</button>
+                    <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "ViewDBPage" %}'">View entire DataBase</button>
+                    <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "ViewDBPage" %}'">Search Parents of Member</button>
+                </div>
             </center>
         </div>
     </div>

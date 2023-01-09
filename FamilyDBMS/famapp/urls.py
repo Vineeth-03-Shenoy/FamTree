@@ -14,5 +14,6 @@ urlpatterns = [
     path('home/DataBase/ViewPage/SearchID/',views.ViewSearchIDPage, name="ViewSearchIDPage"),
     path('home/DataBase/ViewPage/SearchName/',views.ViewSearchNamePage, name="ViewSearchNamePage"),
     path('home/DataBase/ViewPage/DB/',views.ViewDBPage, name="ViewDBPage"),
+    path('home/DataBase/UpdateDetails/',views.UpdateDetails, name="UpdateDetails"),
     path('accounts/', include('accounts.urls')),
 ]
