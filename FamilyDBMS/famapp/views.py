@@ -152,7 +152,13 @@ def eventmanager(request):
     return render(request, "Event_manager/eventmanager.html")
 
 def Newevent(request):
-    return render(request, "Event_manager/newevent.html")
+    return render(request, "Event_manager/eventregister.html")
+
+def Invitees(request):
+    return render(request, "Event_manager/inviteesevent.html")
+
+def ViewEvent(request):
+    return render(request, "Event_manager/viewevent.html")
 
 def ID_Creator(Fname,name,Lname,Dob,coll_val):
     firname = Fname[0]+Fname[(len(Fname)//2)]+Fname[len(Fname)-1]
