@@ -37,12 +37,12 @@
                 <div class="cardoutput spacer">
                     <h1 class="title text">:PERSONAL DETAILS:</h1>
                     <p class="par">
-                        <span>ID:</span> {{ info.member_ID_id }}<br>
+                        <span>ID:</span> {{ info.member_ID_id }}  
+                        <span>Registered On:</span> {{ FamMember.registered_on }}<br><br>
                         <span>Name:</span> {{ FamMember.Fname }} {{ FamMember.Name }} {{ FamMember.Lname }}<br>
                         <span>Date of Birth:</span> {{ FamMember.DoB }}<br>
                         <span>Date of Demise:</span> {{ FamMember.DoD }}<br>
                         <span>Gender:</span> {{ FamMember.Gender }}<br>
-                        <span>Registered On:</span> {{ FamMember.registered_on }}<br>
                         <span>Email ID:</span> {{ info.Email }}<br>
                         <span>Phone Number:</span> {{ info.Ph_prefix }} {{ info.Phone }}<br>
                         <span>Address:</span> {{ info.Address }}<br>
