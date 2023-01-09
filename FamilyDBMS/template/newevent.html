@@ -1,0 +1,34 @@
+{% extends './base.html' %}
+{% load static %}
+<head>
+    <title>Log In</title>
+</head>
+{% block content %}
+    <center>
+        
+        <div class="card center spacer">
+            <h1 class="title text-center">Log In</h1>
+            <form method="post" action="/famapp/accounts/login/" class="login-form spacer" id="login-form">
+                <p>Login with username and password</p>
+                {% csrf_token %} 
+                <div class="input-group">
+                    <img class="icon input-icon" src="{% static 'images/profile-user.svg' %}" alt="">
+                    {{ form.username }}
+                </div>
+                <div class="input-group">
+                    <img class="icon input-icon" src="{% static 'images/key.svg' %}" alt="">
+                    {{ form.password }}
+                </div>
+                <center><input type="submit" class="linkbutton" value="Log in"></center>
+            </form>
+            <div class="text-center line form-divider">or</div>
+            <form action="/famapp/accounts/signup/">
+                <p>New User? click below to Sign Up </p>
+                <center><button name="signup" class="linkbutton" >Sign Up</button></center>
+            </form>
+        </div>
+        
+
+    </center>
+    
+{% endblock content %}
