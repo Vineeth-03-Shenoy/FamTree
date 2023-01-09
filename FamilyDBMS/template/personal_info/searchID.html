@@ -16,11 +16,12 @@
             <div class="menu">
             <ul>
                 <li><button name="button" class="navbutton" type="submit" onclick="location.href='{% url "famHome" %}'">HOME</button></li>
-                <li><button name="newmemberbutton" class="navbutton" type="submit" onclick="location.href='{% url "DataBase" %}'">BACK</button></li>
                 <li><button name="newmemberbutton" class="navbutton" type="submit" onclick="location.href='{% url "NewMember" %}'">New Member</button></li>
+                <li><button name="deletebutton" class="navbutton" type="submit" onclick="location.href='{% url "DeleteMember" %}'">Delete Member</button></li>
                 <li><button name="viewbutton" class="navbutton" type="submit" onclick="location.href='{% url "ViewPage" %}'">View DB</button></li>
-                <li><button name="updatebutton" class="navbutton" type="submit">Update Details</button></li>
-                <li><button name="personalbutton" class="navbutton" type="submit">Personal Info</button></li>
+                <li><button name="updatebutton" class="navbutton" type="submit" onclick="location.href='{% url "UpdateDetails" %}'">Update Details</button></li>
+                <li><button name="personalbutton" class="navbutton" type="submit" onclick="location.href='{% url "PersonalInfo" %}'">Personal Info</button></li>
+                <li><button name="personalbutton" class="navbutton" type="submit" onclick="location.href='{% url "InsertCouple" %}'">Register Couple</button></li>
                 <li>
                     {% if user.is_authenticated %} 
                         <form action="/famapp/accounts/signup/" method="post">
@@ -34,26 +35,27 @@
         </div>
             <center>
                 <div class="card center spacer">
-                    <h1 class="title text-center">Delete Member</h1>
-                    <form method="post" action="/famapp/home/DataBase/DeleteMember/" class="login-form spacer" id="inputMember">
-                        {% csrf_token %} 
+                    <h1 class="title text-center">Search Personal Data Of:</h1>
+                <form method="post" class="login-form spacer" id="searchMember">
+                    {% csrf_token %} 
+                    <div class="input-group">
                         <div class="input-group">
-                            <div class="input-group">
-                                <input 
-                                required="", 
-                                name="FamMemberID", 
-                                id="FamMemberID", 
-                                type="text", 
-                                class="form-input" , 
-                                placeholder="Enter FamMemberID" , 
-                                maxlength='20', 
-                                minlength='17'>
-                            </div>
+                            <input 
+                            required="", 
+                            name="FamMemberID", 
+                            id="FamMemberID", 
+                            type="text", 
+                            class="form-input" , 
+                            placeholder="Enter FamMemberID" , 
+                            maxlength='20', 
+                            minlength='17'>
                         </div>
-                        <input type="submit" class="btn" value="SUBMIT">
-                    </form>
-                </div>
+                    </div>
+                    <input type="submit" class="btn" value="SUBMIT">
+                </form>
+            
             </center>
+            </div>
         </div>
     </div>
     {% endblock content %} 

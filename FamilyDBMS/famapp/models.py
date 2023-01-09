@@ -9,6 +9,7 @@ class Family_Member(models.Model):
     DoB = models.DateField()
     DoD = models.DateField()
     Gender = models.CharField(max_length=2)
+    registered_on = models.DateTimeField(auto_now_add=True)
 
 class Couple_Family(models.Model):
     Couple_ID = models.CharField(max_length=20, primary_key=True)
@@ -22,15 +23,15 @@ class Parents(models.Model):
 
 class Personal_Info(models.Model):
     member_ID = models.OneToOneField(Family_Member,on_delete=models.CASCADE,primary_key=True)
-    Ph_prefix = models.IntegerField()
-    Phone = models.BigIntegerField()
+    Ph_prefix = models.CharField(max_length=6)
+    Phone = models.CharField(max_length=18)
     Address = models.CharField(max_length=100)
     City = models.CharField(max_length=30)
     Country = models.CharField(max_length=30)
+    Pincode=models.CharField(max_length=15, null=True)
     Email = models.EmailField()
     Job_or_student = models.CharField(max_length=50)
     Company_or_School = models.CharField(max_length=50)
-    privilege = models.BooleanField()
 
 class Families(models.Model):
     Family_ID = models.CharField(max_length=20, primary_key=True)
