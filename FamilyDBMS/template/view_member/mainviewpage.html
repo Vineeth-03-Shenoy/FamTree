@@ -38,8 +38,11 @@
                     <h1 class="title text-center">VIEW</h1>
                     <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "ViewSearchIDPage" %}'">Search member by ID</button>
                     <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "ViewSearchNamePage" %}'">Search by member Name</button>
+                    <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "ViewSearchParents" %}'">Search Parents of a Member</button>
+                    <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "ViewSearchChildren" %}'">Search Children of a Member</button><br>
                     <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "ViewDBPage" %}'">View entire DataBase</button>
-                    <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "ViewDBPage" %}'">Search Parents of Member</button>
+                    <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "ViewCoupleDB" %}'">View Entire Couple Table</button>
+                    <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "ViewParentsDB" %}'">View Entire Parents Table</button>
                 </div>
             </center>
         </div>

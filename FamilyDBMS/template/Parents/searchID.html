@@ -34,11 +34,31 @@
             </div>
         </div>
             <center>
-                <h1 class="title text">Successfully Updated Details</h1>
-                <div class="cardoutput spacer">
-
+                <div class="card center spacer">
+                    <h1 class="title text-center">Search Member</h1>
+                <form method="post" class="login-form spacer" id="searchMember">
+                    {% csrf_token %} 
+                    <div class="input-group">
+                        <div class="input-group">
+                            <input 
+                            required="", 
+                            name="child_ID_id", 
+                            id="child_ID_id", 
+                            type="text", 
+                            class="form-input" , 
+                            placeholder="Enter Child's Member ID" , 
+                            maxlength='20', 
+                            minlength='17'>
+                        </div>
+                    </div>
+                    <input type="submit" class="btn" value="SUBMIT">
+                </form>
+            
             </center>
+            </div>
         </div>
     </div>
-    {% endblock content %}
+    {% endblock content %} 
 </body>
+
+</html>

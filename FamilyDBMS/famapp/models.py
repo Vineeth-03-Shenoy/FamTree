@@ -19,7 +19,7 @@ class Couple_Family(models.Model):
 
 class Parents(models.Model):
     child_ID = models.OneToOneField(Family_Member, on_delete=models.CASCADE, primary_key=True)
-    parents_ID = models.ManyToManyField(Couple_Family)
+    parents_ID = models.CharField(max_length=20, null=True)
 
 class Personal_Info(models.Model):
     member_ID = models.OneToOneField(Family_Member,on_delete=models.CASCADE,primary_key=True)

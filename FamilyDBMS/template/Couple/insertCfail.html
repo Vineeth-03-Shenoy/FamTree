@@ -35,27 +35,7 @@
         </div>
             <center>
                 <div class="cardoutput spacer">
-                    <h1 class="title text">Successfully Updated Details</h1>
-                    <table>
-                        <thead>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Date of Birth</th>
-                            <th>Date of Demise</th>
-                            <th>Gender</th>
-                        </thead>
-                        <tbody>
-                            {% for data in FamMember %}
-                            <tr>
-                                <td>{{ data.FamMemberID }}</td>
-                                <td>{{ data.Fname }} {{ data.Name }} {{ data.Lname }}</td>
-                                <td>{{ data.DoB }}</td>
-                                <td>{{ data.DoD }}</td>
-                                <td>{{ data.Gender }}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                        <table>
+                    <h1 class="title text">Failed!!! Either of the 2 Members were not registered as family member</h1>
                 </div>
 
             </center>

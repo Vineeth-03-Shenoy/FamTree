@@ -39,22 +39,18 @@
             <div class="cardoutput spacer">
                 <table>
                     <thead>
-                        <th>ID</th>
-                        <th>Gender</th>
-                        <th>Name</th>
-                        <th>D.O.B</th>
-                        <th>Demise</th>
-                        <th>Registered On</th>
+                        <th>Couple ID</th>
+                        <th>Husband ID</th>
+                        <th>Wife ID</th>
+                        <th>Wedding Aniversery</th>
                     </thead>
                     <tbody>
                         {% for data in FamMember %}
                         <tr>
-                            <td>{{ data.FamMemberID }}</td>
-                            <td>{{ data.Gender }}</td>
-                            <td>{{ data.Fname }} {{ data.Name }} {{ data.Lname }}</td>
-                            <td>{{ data.DoB }}</td>
-                            <td>{{ data.DoD }}</td>
-                            <td>{{ data.registered_on }}</td>
+                            <td>{{ data.Couple_ID }}</td>
+                            <td>{{ data.Hus_id }}</td>
+                            <td>{{ data.Wife }}</td>
+                            <td>{{ data.Wed_ann }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>

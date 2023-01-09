@@ -1,0 +1,16 @@
+{% extends 'TheBaseDB.html' %}
+{% load static %}
+{% block content %}
+<center>
+    <div class="cardoutput spacer">
+        <h1 class="title text">:Parents Data:</h1>
+        <p class="par">
+            <br><span>Couple ID: </span>{{ data.Couple_ID }}<br><br>
+            <span>Father: </span>{{ Father.Fname }} {{ Father.Name }} {{ Father.Lname }}<br><br>
+            <span>Mother: </span>{{ Mother.Fname }} {{ Mother.Name }} {{ Mother.Lname }}<br><br>
+            <span>Child: </span>{{ Child.Fname }} {{ Child.Name }} {{ Child.Lname }}<br><br>
+            <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "ViewParentsDB"%}'">View Entire Parents Table</button>
+        </p>
+    </div>
+</center>
+{% endblock content %}
