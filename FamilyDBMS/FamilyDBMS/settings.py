@@ -79,7 +79,7 @@ APPEND_SLASH=False
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'familytesttree',
+        'NAME': 'familyTree',
         'USER':'root',
         'PASSWORD': 'VineethMYSQL@123',
         'HOST':'localhost',

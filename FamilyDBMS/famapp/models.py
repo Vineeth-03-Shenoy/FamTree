@@ -7,7 +7,7 @@ class Family_Member(models.Model):
     Name = models.CharField(max_length=30)
     Lname = models.CharField(max_length=30)
     DoB = models.DateField()
-    DoD = models.DateField()
+    DoD = models.DateField(null=True)
     Gender = models.CharField(max_length=2)
     registered_on = models.DateTimeField(auto_now_add=True)
 

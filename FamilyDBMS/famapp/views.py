@@ -1,7 +1,7 @@
 import datetime
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Family_Member, Personal_Info, Couple_Family, Parents
+from .models import Family_Member, Personal_Info, Couple_Family, Parents, Families
 import time
 
 # Create your views here.
@@ -24,7 +24,7 @@ def NewMember(request):
 
         collval=0
         while collval!=5:
-            ID = ID_Creator(Fname.upper(),Name.upper(),Lname.upper(),DoB,collval)
+            ID, FamID = ID_Creator(Fname.upper(),Name.upper(),Lname.upper(),DoB,collval)
             try:
                 obj=Family_Member.objects.get(FamMemberID=ID)
                 collval+=1
@@ -36,7 +36,15 @@ def NewMember(request):
             print("ID could not be genrated, please contact admin",Fname,Name,Lname,DoB,Gender)
 
         ins = Family_Member(FamMemberID=FamMemberID, Fname=Fname,Name=Name,Lname=Lname,DoB=DoB,Gender=Gender)
-        ins.save()
+        if Families.objects.filter(Family_ID=FamID).exists():
+            ins2 = Families.objects.get(Family_ID=FamID)
+            ins2.Members+=1
+            ins2.save()
+            ins.save()
+        else:
+            ins2=Families(Family_ID=FamID, Fam_Name=Fname+' '+Lname, Members=1)
+            ins2.save()
+            ins.save()
         return render(request, "insert_member/insert successfull.html", { 'FamMemberID': FamMemberID })
     return render(request, "insert_member/insertdb.html")
 
@@ -171,7 +179,7 @@ def insertParentsInfo(request):
         try:
             ID=Couple_Family.objects.get(Couple_ID=parents_ID)
             ID=Family_Member.objects.get(FamMemberID=child_ID_id)
-            ins = Parents(child_ID_id=child_ID_id, parents_ID=parents_ID)
+            ins = Parents(child_ID_id=child_ID_id,  parents_ID=parents_ID)
             ins.save()
             data = Couple_Family.objects.get(Couple_ID=parents_ID)
             Father = Family_Member.objects.get(FamMemberID=data.Hus_id)
@@ -229,23 +237,24 @@ def ViewEvent(request):
 def ID_Creator(Fname,name,Lname,Dob,coll_val):
     firname = Fname[0]+Fname[(len(Fname)//2)]+Fname[len(Fname)-1]
     lastname = Lname[0]+Lname[(len(Lname)//2)]+Lname[len(Lname)-1]
+    FamID = firname+lastname
     if coll_val==0:                                                                     #for the first time
         midname = name[0]+name[(len(name)//2)-1]+name[len(name)-1]
         ID = Dob[:4]+firname+midname+lastname+Dob[5:7]+Dob[8:10]
-        return ID
+        return ID,FamID
     elif coll_val==1:
         midname = name[0]+name[(len(name)//2)-2]+name[len(name)-1]
         ID = Dob[:4]+firname+midname+lastname+Dob[5:7]+Dob[8:10]
-        return ID
+        return ID,FamID
     elif coll_val==2:
         midname = name[0]+name[(len(name)//2)]+name[len(name)-1]
         ID = Dob[:4]+firname+midname+lastname+Dob[5:7]+Dob[8:10]
-        return ID 
+        return ID,FamID
     elif coll_val==3:
         midname = name[0]+name[(len(name)//2)+1]+name[len(name)-1]
         ID = Dob[:4]+firname+midname+lastname+Dob[5:7]+Dob[8:10]
-        return ID
+        return ID,FamID
     elif coll_val==4:
         midname = name[0]+name[(len(name)//2)+2]+name[len(name)-1]
         ID = Dob[:4]+firname+midname+lastname+Dob[5:7]+Dob[8:10]
-        return ID
+        return ID,FamID
