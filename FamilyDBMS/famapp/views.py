@@ -1,7 +1,7 @@
 import datetime
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Family_Member, Personal_Info
+from .models import Family_Member, Personal_Info, Couple_Family, Parents, Families
 import time
 
 # Create your views here.
@@ -24,7 +24,7 @@ def NewMember(request):
 
         collval=0
         while collval!=5:
-            ID = ID_Creator(Fname.upper(),Name.upper(),Lname.upper(),DoB,collval)
+            ID, FamID = ID_Creator(Fname.upper(),Name.upper(),Lname.upper(),DoB,collval)
             try:
                 obj=Family_Member.objects.get(FamMemberID=ID)
                 collval+=1
@@ -36,7 +36,15 @@ def NewMember(request):
             print("ID could not be genrated, please contact admin",Fname,Name,Lname,DoB,Gender)
 
         ins = Family_Member(FamMemberID=FamMemberID, Fname=Fname,Name=Name,Lname=Lname,DoB=DoB,Gender=Gender)
-        ins.save()
+        if Families.objects.filter(Family_ID=FamID).exists():
+            ins2 = Families.objects.get(Family_ID=FamID)
+            ins2.Members+=1
+            ins2.save()
+            ins.save()
+        else:
+            ins2=Families(Family_ID=FamID, Fam_Name=Fname+' '+Lname, Members=1)
+            ins2.save()
+            ins.save()
         return render(request, "insert_member/insert successfull.html", { 'FamMemberID': FamMemberID })
     return render(request, "insert_member/insertdb.html")
 
@@ -140,40 +148,113 @@ def personalInfoSearch(request):
 
 
 def insertCoupleInfo(request):
-    return render(request, "Couple&parents/insertCouple.html")
+    if request.method=='POST':
+        Hus=request.POST['Hus']
+        Wife=request.POST['Wife']
+        Wed_ann=request.POST['Wed_ann']
+        Couple_ID = Wed_ann[0:4]+Hus[7:10]+Wife[7:10]+Wed_ann[5:7]+Wed_ann[8:10]
+        print(Couple_ID)
+        try:
+            FamMember=Family_Member.objects.get(FamMemberID=Hus)
+            FamMember=Family_Member.objects.get(FamMemberID=Wife)
+            ins=Couple_Family(Couple_ID=Couple_ID, Hus_id=Hus, Wife=Wife, Wed_ann=Wed_ann)
+            ins.save()
+            data = Couple_Family.objects.get(Couple_ID=Couple_ID)
+            Husband = Family_Member.objects.get(FamMemberID=Hus)
+            Wife__ = Family_Member.objects.get(FamMemberID=Wife)
+            return render(request,"Couple/insertCsuccess.html",{ 'data':data,'Husband':Husband,'Wife':Wife__} )
+        except Family_Member.DoesNotExist:
+            return render(request,"Couple/insertCfail.html")
+        
+    return render(request, "Couple/insertCouple.html")
     
+def ViewCoupleDB(request):
+    FamMember=Couple_Family.objects.all().order_by('Couple_ID')
+    return render(request, "Couple/viewCoupleDB.html", { 'FamMember' : FamMember })
+    
+def insertParentsInfo(request):
+    if request.method=='POST':
+        child_ID_id=request.POST['child_ID_id']
+        parents_ID=request.POST['parents_ID']
+        try:
+            ID=Couple_Family.objects.get(Couple_ID=parents_ID)
+            ID=Family_Member.objects.get(FamMemberID=child_ID_id)
+            ins = Parents(child_ID_id=child_ID_id,  parents_ID=parents_ID)
+            ins.save()
+            data = Couple_Family.objects.get(Couple_ID=parents_ID)
+            Father = Family_Member.objects.get(FamMemberID=data.Hus_id)
+            Mother = Family_Member.objects.get(FamMemberID=data.Wife)
+            Child = Family_Member.objects.get(FamMemberID=child_ID_id)
+            return render(request,"Parents/insertSuccess.html",{ 'data':data,'Father':Father,'Mother':Mother,'Child':Child})
+        except Couple_Family.DoesNotExist or Family_Member.DoesNotExist:
+            return render(request,"Parents/insertFail.html")
+    return render(request,"Parents/insertParents.html")
 
-def insertParentsInfo():
+def ViewParentsDB(request):
+    FamMember=Parents.objects.all().order_by('parents_ID')
+    return render(request, "Parents/viewParentsDB.html", { 'FamMember' : FamMember })
 
-    return None
+def ViewSearchParents(request):
+    if request.method=='POST':
+        child_ID_id=request.POST['child_ID_id']
+        data = Parents.objects.get(child_ID_id=child_ID_id)
+        data2 = Couple_Family.objects.get(Couple_ID=data.parents_ID)
+        Father = Family_Member.objects.get(FamMemberID=data2.Hus_id)
+        Mother = Family_Member.objects.get(FamMemberID=data2.Wife)
+        Child = Family_Member.objects.get(FamMemberID=child_ID_id)
+        return render(request,"Parents/insertSuccess.html",{ 'data':data2,'Father':Father,'Mother':Mother,'Child':Child})
+    return render(request, "Parents/searchID.html" )
 
+def ViewSearchChildren(request):
+    if request.method=='POST':
+        parents_ID=request.POST['parents_id']
+        try:
+            data2 = Couple_Family.objects.get(Couple_ID=parents_ID)
+            Father = Family_Member.objects.get(FamMemberID=data2.Hus_id)
+            Mother = Family_Member.objects.get(FamMemberID=data2.Wife)
+            list = Parents.objects.filter(parents_ID=parents_ID)
+            print(list)
+            list2=[]
+            for child in list:
+                list2+=[Family_Member.objects.get(FamMemberID=child.child_ID_id)]
+            return render(request, "Parents/children.html", { 'data':data2,'Father':Father,'Mother':Mother,'list':list2})
+        except Family_Member.DoesNotExist:
+            return render(request, "Parents/children.html")
+    return render(request, "Parents/searchByParent.html")
 
 def eventmanager(request):
     return render(request, "Event_manager/eventmanager.html")
 
 def Newevent(request):
-    return render(request, "Event_manager/newevent.html")
+    return render(request, "Event_manager/eventregister.html")
+
+def Invitees(request):
+    return render(request, "Event_manager/inviteesevent.html")
+
+def ViewEvent(request):
+    return render(request, "Event_manager/viewevent.html")
 
 def ID_Creator(Fname,name,Lname,Dob,coll_val):
     firname = Fname[0]+Fname[(len(Fname)//2)]+Fname[len(Fname)-1]
     lastname = Lname[0]+Lname[(len(Lname)//2)]+Lname[len(Lname)-1]
+    FamID = firname+lastname
     if coll_val==0:                                                                     #for the first time
         midname = name[0]+name[(len(name)//2)-1]+name[len(name)-1]
         ID = Dob[:4]+firname+midname+lastname+Dob[5:7]+Dob[8:10]
-        return ID
+        return ID,FamID
     elif coll_val==1:
         midname = name[0]+name[(len(name)//2)-2]+name[len(name)-1]
         ID = Dob[:4]+firname+midname+lastname+Dob[5:7]+Dob[8:10]
-        return ID
+        return ID,FamID
     elif coll_val==2:
         midname = name[0]+name[(len(name)//2)]+name[len(name)-1]
         ID = Dob[:4]+firname+midname+lastname+Dob[5:7]+Dob[8:10]
-        return ID 
+        return ID,FamID
     elif coll_val==3:
         midname = name[0]+name[(len(name)//2)+1]+name[len(name)-1]
         ID = Dob[:4]+firname+midname+lastname+Dob[5:7]+Dob[8:10]
-        return ID
+        return ID,FamID
     elif coll_val==4:
         midname = name[0]+name[(len(name)//2)+2]+name[len(name)-1]
         ID = Dob[:4]+firname+midname+lastname+Dob[5:7]+Dob[8:10]
-        return ID
+        return ID,FamID

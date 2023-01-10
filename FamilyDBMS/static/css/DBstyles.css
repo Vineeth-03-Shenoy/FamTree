@@ -240,7 +240,7 @@ span{
     font-size:large;
     background-color: rgba(0, 0, 0, 0.67);
     transition: all 0.3s ease-in-out;
-    width: 75%;
+    width: 90%;
     min-width: 320px;
     padding: 5%;
 }

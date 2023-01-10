@@ -1,0 +1,22 @@
+{% extends 'TheBaseDB.html' %}
+{% block content %}
+<center>
+    <div class="cardoutput spacer">
+        <h1 class="title text">Parents DataBase</h1>
+        <table>
+            <thead>
+                <th>Child ID</th>
+                <th>Parent's ID (couple id)</th>
+            </thead>
+            <tbody>
+                {% for data in FamMember %}
+                <tr>
+                    <td>{{ data.child_ID_id }}</td>
+                    <td>{{ data.parents_ID }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <table>
+    </div>
+</center>
+{% endblock content %}

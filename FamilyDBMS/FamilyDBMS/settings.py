@@ -79,7 +79,7 @@ APPEND_SLASH=False
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'familytesttree',
+        'NAME': 'familyTree',
         'USER':'root',
         'PASSWORD': 'VineethMYSQL@123',
         'HOST':'localhost',
@@ -115,10 +115,10 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
-
+USE_L10N = True
 USE_TZ = True
 
 

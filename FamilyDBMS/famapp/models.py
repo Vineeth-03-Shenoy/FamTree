@@ -7,7 +7,7 @@ class Family_Member(models.Model):
     Name = models.CharField(max_length=30)
     Lname = models.CharField(max_length=30)
     DoB = models.DateField()
-    DoD = models.DateField()
+    DoD = models.DateField(null=True)
     Gender = models.CharField(max_length=2)
     registered_on = models.DateTimeField(auto_now_add=True)
 
@@ -19,7 +19,7 @@ class Couple_Family(models.Model):
 
 class Parents(models.Model):
     child_ID = models.OneToOneField(Family_Member, on_delete=models.CASCADE, primary_key=True)
-    parents_ID = models.ManyToManyField(Couple_Family)
+    parents_ID = models.CharField(max_length=20, null=True)
 
 class Personal_Info(models.Model):
     member_ID = models.OneToOneField(Family_Member,on_delete=models.CASCADE,primary_key=True)

@@ -1,0 +1,15 @@
+{% extends 'TheBaseDB.html' %}
+{% block content %}
+<center>
+    <div class="cardoutput spacer">
+        <h1 class="title text">:Couple Data:</h1>
+        <p class="par">
+            <br><span>Couple ID: </span>{{ data.Couple_ID }}<br><br>
+            <span>Husband: </span>{{ Husband.Fname }} {{ Husband.Name }} {{ Husband.Lname }}<br><br>
+            <span>Wife: </span>{{ Wife.Fname }} {{ Wife.Name }} {{ Wife.Lname }}<br><br>
+            <span>Wedding Anniversary: </span>{{ data.Wed_ann }}<br><br>
+            <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "ViewCoupleDB" %}'">View Entire Couple Table</button>
+        </p>
+    </div>
+</center>
+{% endblock content %}

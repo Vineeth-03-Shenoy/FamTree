@@ -1,0 +1,25 @@
+{% extends 'TheBaseDB.html' %}
+{% block content %}
+<center>
+    <div class="cardoutput spacer">
+        <h1 class="title text-center">Register Couple</h1>
+        <form method="post" action="/famapp/home/DataBase/CoupleRegister/" class="login-form spacer" id="insertcouple">
+            {% csrf_token %}
+            <div class="input-group">
+                <input required="" , name="Hus" , id="Hus" , type="text" , class="form-input" ,
+                    placeholder="Enter ID of Husband" , maxlength='20' , minlength='17'>
+            </div>
+            <div class="input-group">
+                <input required="" , name="Wife" , id="Wife" , type="text" , class="form-input" ,
+                    placeholder="Enter ID of Wife" , maxlength='20' , minlength='17'>
+            </div>
+            <p class="par">Enter Date of Marriage:</p>
+            <div class="input-group">
+                <input name="Wed_ann" , id="Wed_ann" , type="date" , class="form-input">
+            </div>
+            <p class="par">*Both of them must, first be registered as Family Members</p>
+            <input type="submit" class="btn" value="SUBMIT">
+        </form>
+    </div>
+</center>
+{% endblock content %}

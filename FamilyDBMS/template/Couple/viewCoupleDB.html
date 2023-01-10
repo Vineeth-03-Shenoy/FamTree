@@ -1,0 +1,25 @@
+{% extends 'TheBaseDB.html' %}
+{% block content %}
+<center>
+    <div class="cardoutput spacer">
+        <table>
+            <thead>
+                <th>Couple ID</th>
+                <th>Husband ID</th>
+                <th>Wife ID</th>
+                <th>Wedding Aniversery</th>
+            </thead>
+            <tbody>
+                {% for data in FamMember %}
+                <tr>
+                    <td>{{ data.Couple_ID }}</td>
+                    <td>{{ data.Hus_id }}</td>
+                    <td>{{ data.Wife }}</td>
+                    <td>{{ data.Wed_ann }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <table>
+    </div>
+</center>
+{% endblock content %}
