@@ -146,7 +146,6 @@ def personalInfoSearch(request):
             return render(request, "personal_info/Output.html")
     return render(request, "personal_info/searchID.html")
 
-
 def insertCoupleInfo(request):
     if request.method=='POST':
         Hus=request.POST['Hus']
@@ -157,7 +156,7 @@ def insertCoupleInfo(request):
         try:
             FamMember=Family_Member.objects.get(FamMemberID=Hus)
             FamMember=Family_Member.objects.get(FamMemberID=Wife)
-            ins=Couple_Family(Couple_ID=Couple_ID, Hus_id=Hus, Wife=Wife, Wed_ann=Wed_ann)
+            ins=Couple_Family(Couple_ID=Couple_ID, Hus_id=Hus, Wife_id=Wife, Wed_ann=Wed_ann)
             ins.save()
             data = Couple_Family.objects.get(Couple_ID=Couple_ID)
             Husband = Family_Member.objects.get(FamMemberID=Hus)
@@ -165,7 +164,6 @@ def insertCoupleInfo(request):
             return render(request,"Couple/insertCsuccess.html",{ 'data':data,'Husband':Husband,'Wife':Wife__} )
         except Family_Member.DoesNotExist:
             return render(request,"Couple/insertCfail.html")
-        
     return render(request, "Couple/insertCouple.html")
     
 def ViewCoupleDB(request):
@@ -175,15 +173,15 @@ def ViewCoupleDB(request):
 def insertParentsInfo(request):
     if request.method=='POST':
         child_ID_id=request.POST['child_ID_id']
-        parents_ID=request.POST['parents_ID']
+        parents_ID_id=request.POST['parents_ID']
         try:
-            ID=Couple_Family.objects.get(Couple_ID=parents_ID)
+            ID=Couple_Family.objects.get(Couple_ID=parents_ID_id)
             ID=Family_Member.objects.get(FamMemberID=child_ID_id)
-            ins = Parents(child_ID_id=child_ID_id,  parents_ID=parents_ID)
+            ins = Parents(child_ID_id=child_ID_id,  parents_ID_id=parents_ID_id)
             ins.save()
-            data = Couple_Family.objects.get(Couple_ID=parents_ID)
+            data = Couple_Family.objects.get(Couple_ID=parents_ID_id)
             Father = Family_Member.objects.get(FamMemberID=data.Hus_id)
-            Mother = Family_Member.objects.get(FamMemberID=data.Wife)
+            Mother = Family_Member.objects.get(FamMemberID=data.Wife_id)
             Child = Family_Member.objects.get(FamMemberID=child_ID_id)
             return render(request,"Parents/insertSuccess.html",{ 'data':data,'Father':Father,'Mother':Mother,'Child':Child})
         except Couple_Family.DoesNotExist or Family_Member.DoesNotExist:
@@ -191,28 +189,28 @@ def insertParentsInfo(request):
     return render(request,"Parents/insertParents.html")
 
 def ViewParentsDB(request):
-    FamMember=Parents.objects.all().order_by('parents_ID')
+    FamMember=Parents.objects.all().order_by('parents_ID_id')
     return render(request, "Parents/viewParentsDB.html", { 'FamMember' : FamMember })
 
 def ViewSearchParents(request):
     if request.method=='POST':
         child_ID_id=request.POST['child_ID_id']
         data = Parents.objects.get(child_ID_id=child_ID_id)
-        data2 = Couple_Family.objects.get(Couple_ID=data.parents_ID)
+        data2 = Couple_Family.objects.get(Couple_ID=data.parents_ID_id)
         Father = Family_Member.objects.get(FamMemberID=data2.Hus_id)
-        Mother = Family_Member.objects.get(FamMemberID=data2.Wife)
+        Mother = Family_Member.objects.get(FamMemberID=data2.Wife_id)
         Child = Family_Member.objects.get(FamMemberID=child_ID_id)
         return render(request,"Parents/insertSuccess.html",{ 'data':data2,'Father':Father,'Mother':Mother,'Child':Child})
     return render(request, "Parents/searchID.html" )
 
 def ViewSearchChildren(request):
     if request.method=='POST':
-        parents_ID=request.POST['parents_id']
+        parents_ID_id=request.POST['parents_id']
         try:
-            data2 = Couple_Family.objects.get(Couple_ID=parents_ID)
+            data2 = Couple_Family.objects.get(Couple_ID=parents_ID_id)
             Father = Family_Member.objects.get(FamMemberID=data2.Hus_id)
-            Mother = Family_Member.objects.get(FamMemberID=data2.Wife)
-            list = Parents.objects.filter(parents_ID=parents_ID)
+            Mother = Family_Member.objects.get(FamMemberID=data2.Wife_id)
+            list = Parents.objects.filter(parents_ID_id=parents_ID_id)
             print(list)
             list2=[]
             for child in list:
@@ -233,6 +231,17 @@ def Invitees(request):
 
 def ViewEvent(request):
     return render(request, "Event_manager/viewevent.html")
+
+def Famtree(request):
+    if request.method=='POST':
+        start_id=request.POST['sourceMember']
+        end_id=request.POST['targetMember']
+        path = trace_path(start_id, end_id)
+        path.reverse()
+        path = list(dict.fromkeys(path))
+        path.reverse()
+        print(path)
+    return render(request, "treetrace.html")
 
 def ID_Creator(Fname,name,Lname,Dob,coll_val):
     firname = Fname[0]+Fname[(len(Fname)//2)]+Fname[len(Fname)-1]
@@ -258,3 +267,59 @@ def ID_Creator(Fname,name,Lname,Dob,coll_val):
         midname = name[0]+name[(len(name)//2)+2]+name[len(name)-1]
         ID = Dob[:4]+firname+midname+lastname+Dob[5:7]+Dob[8:10]
         return ID,FamID
+
+
+def find_children(fam_member_id):
+    children = Parents.objects.filter(parents_ID__Hus=fam_member_id) | Parents.objects.filter(parents_ID__Wife=fam_member_id)
+    children_id = [child.child_ID.FamMemberID for child in children]
+    return children_id
+
+def trace_path(start, end):
+    # Base case: if start and end are the same, return the path
+    if start == end:
+        return [start]
+    path = []
+    try:
+        # check if the start member is a child
+        child = Parents.objects.get(child_ID=start)
+        # get the parent couple
+        couple = child.parents_ID
+        # check if the end member is a parent
+        if couple.Hus.FamMemberID == end or couple.Wife.FamMemberID == end:
+            return [start, couple.Hus.FamMemberID, couple.Wife.FamMemberID, end]
+        else:
+            # check if the end member is a child
+            path = trace_path(couple.Hus.FamMemberID, end)
+            if not path:
+                path = trace_path(couple.Wife.FamMemberID, end)
+            if path:
+                path.insert(0, start)
+            else:
+                # check if the end member is a grandchild
+                children = find_children(start)
+                for child in children:
+                    path = trace_path(child, end)
+                    if path:
+                        path.insert(0, start)
+                        break
+    except Parents.DoesNotExist:
+        # check if the start member is a parent
+        couple = Couple_Family.objects.get(Hus=start)
+        if couple.Wife.FamMemberID == end:
+            return [start, end]
+        else:
+            # check if the end member is a child
+            path = trace_path(couple.Wife.FamMemberID, end)
+            if path:
+                path.insert(0, start)
+            else:
+                # check if the end member is a grandchild
+                children = find_children(start)
+                for child in children:
+                    path = trace_path(child, end)
+                    if path:
+                        path.insert(0, start)
+                        break
+    except Couple_Family.DoesNotExist:
+        pass
+    return path

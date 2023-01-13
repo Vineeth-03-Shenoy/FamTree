@@ -13,13 +13,14 @@ class Family_Member(models.Model):
 
 class Couple_Family(models.Model):
     Couple_ID = models.CharField(max_length=20, primary_key=True)
-    Hus = models.OneToOneField(Family_Member, on_delete=models.CASCADE)
-    Wife = models.CharField(max_length=20)
+    Hus = models.ForeignKey(Family_Member, on_delete=models.CASCADE, related_name='husband', to_field='FamMemberID')
+    Wife = models.ForeignKey(Family_Member, on_delete=models.CASCADE, related_name='wife', to_field='FamMemberID')
     Wed_ann = models.DateField()
 
 class Parents(models.Model):
-    child_ID = models.OneToOneField(Family_Member, on_delete=models.CASCADE, primary_key=True)
-    parents_ID = models.CharField(max_length=20, null=True)
+    id = models.CharField(primary_key=True, max_length=20)
+    child_ID = models.ForeignKey(Family_Member, on_delete=models.CASCADE, related_name='child', to_field='FamMemberID')
+    parents_ID = models.ForeignKey(Couple_Family, on_delete=models.CASCADE, related_name='parent', to_field='Couple_ID')
 
 class Personal_Info(models.Model):
     member_ID = models.OneToOneField(Family_Member,on_delete=models.CASCADE,primary_key=True)
@@ -45,7 +46,7 @@ class Events(models.Model):
     Date = models.DateField()
 
 class Invitees(models.Model):
-    Event_code = models.ManyToManyField(Events)
-    Family_invited = models.ManyToManyField(Families)
-    Couple_invited = models.ManyToManyField(Couple_Family)
+    Event_code = models.ForeignKey(Events, on_delete=models.CASCADE)
+    Family_invited = models.ForeignKey(Families, on_delete=models.SET_NULL, null=True)
+    Couple_invited = models.ForeignKey(Couple_Family, on_delete=models.SET_NULL, null=True)
 
