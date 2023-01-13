@@ -1,0 +1,21 @@
+{% extends 'TheBaseDB.html' %}
+{% block content %}
+<center>
+    <div class="cardoutput spacer">
+        <h1 class="title text-center">Register Parents</h1>
+        <form method="post" action="/famapp/home/TraceTree/" class="login-form spacer" id="insertcouple">
+            {% csrf_token %}
+            <div class="input-group">
+                <input required="" , name="sourceMember" , id="sourceMember" , type="text" , class="form-input" ,
+                    placeholder="Enter ID of sourceMember" , maxlength='20' , minlength='14'>
+            </div>
+            <div class="input-group">
+                <input required="" , name="targetMember" , id="targetMember" , type="text" , class="form-input" ,
+                    placeholder="Enter targetMember ID" , maxlength='20' , minlength='14'>
+            </div>
+            <p class="par">*The child must be registered as a member<br>*parents must be registered as couple</p>
+            <input type="submit" class="btn" value="SUBMIT">
+        </form>
+    </div>
+</center>
+{% endblock content %}
