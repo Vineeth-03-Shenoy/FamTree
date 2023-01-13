@@ -1,8 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="css/style.css">
    <style>
       * {
          margin: 0;
@@ -109,23 +111,30 @@
          cursor: pointer;
       }
    </style>
+
 </head>
 
-<body>
-   <div class="container">
-      <form>
-         <h1>Invitees for Event</h1>
-         <div class="form group">
-            <label for="">Event ID</label><br>
-            <input type="text" placeholder="Enter Event id" class="form-control" required>
+<body class="body">
+   <center>
+      <div class="card spacer">
+         <div class="main" backgroeund-image: url="../images/LLRR4.png">
+            <h1 class="logo">INVITEES FOR EVENT</h1>
+            <div class="input-group">
+               <input required="" , name="EventID" , id="EventID" , type="text" , class="form-input" ,
+                  placeholder="Enter EventID" , maxlength='20' , minlength='17'>
+            </div>
+
+
+            <div class="input-group">
+               <input required="" , name="InviteeID" , id="InviteeID" , type="text" , class="form-input" ,
+                  placeholder="Enter InviteeID" , maxlength='20' , minlength='17'>
+            </div>
+            <input class="btn" type="submit" name="submit" value="Submit">
+            </form>
          </div>
-         <div class="inputbox">
-            <label for="">Invitee id </label><br>
-            <input type="text" placeholder="Enter Invitee id" onekeydown="validation()" class="form-control" required>
-         </div>
-         <input class="btn" type="submit" name="submit" value="Submit">
-      </form>
-   </div>
+      </div>
+   </center>
+   {% endblock content %}
 </body>
 
 </html>
