@@ -203,3 +203,9 @@ def trace_path(start, end):
     except Relationship.DoesNotExist:
         pass
     return path
+
+This code includes additional checks for relationships such as 'sibling', 'uncle', 'aunt', 'niece', 'nephew', 'husband', 'wife' by using the filter() method on the Relationship model and checking if the relationship type is 'Sibling' or 'Uncle' or 'Aunt' or 'Niece' or 'Nephew' respectively and also added check for husband and wife.
+
+Please note that in this implementation, it only checks for the relationship "Parent" , "Grand Parent" , "Sibling", 'uncle', 'aunt', 'niece', 'nephew', 'husband', 'wife' and returns the path between them. If you want to include more relationship types, you can check for them in the same manner as the above relationships are checked for. You can also add the exception handling for the other relationships as well.
+
+Please let me know if you have any questions or concerns.
