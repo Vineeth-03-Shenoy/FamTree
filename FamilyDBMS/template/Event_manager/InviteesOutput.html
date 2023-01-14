@@ -1,0 +1,51 @@
+{% extends 'TheBaseEvent.html' %}
+{% block content %}
+<center>
+    <div class="main3">
+        <div class="cardoutput spacer">
+            <p class="par">
+                <span>ID:</span> {{ info.Event_ID }} <span>Title:</span> {{ info.Event_Name }}<br>
+                <span>Venue:</span> {{ info.Venue }}<br>
+                <span>Date:</span> {{ info.Date }}<br>
+            </p>
+            <table>
+                <thead>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                </thead>
+                <tbody>
+                    {% for member in members %}
+                    <tr>
+                        <td>{{ member.name }}</td>
+                        <td>{{ member.phone }}</td>
+                        <td>{{ member.address }}</td>
+                    </tr>
+                    {% endfor %}
+                    {% for couple in couples %}
+                    <tr>
+                        <td>{{ couple.husband.name }} (Husband)</td>
+                        <td>{{ couple.husband.phone }}</td>
+                        <td>{{ couple.husband.address }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ couple.wife.name }} (Wife)</td>
+                        <td>{{ couple.wife.phone }}</td>
+                        <td>{{ couple.wife.address }}</td>
+                    </tr>
+                    {% endfor %}
+                    {% for family in families %}
+                    {% for member in family.members %}
+                    <tr>
+                        <td>{{ member.name }} (Family: {{ family.name }})</td>
+                        <td>{{ member.phone }}</td>
+                        <td>{{ member.address }}</td>
+                    </tr>
+                    {% endfor %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</center>
+{% endblock content %}

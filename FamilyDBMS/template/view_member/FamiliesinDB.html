@@ -1,0 +1,25 @@
+{% extends 'TheBaseDB.html' %}
+{% block content %}
+<center>
+    <div class="main2">
+        <div class="cardoutput spacer">
+            <table>
+                <thead>
+                    <th>Family ID</th>
+                    <th>Family Name</th>
+                    <th>Members on the Database</th>
+                </thead>
+                <tbody>
+                    {% for data in Family %}
+                    <tr>
+                        <td>{{ data.Family_ID }}</td>
+                        <td>{{ data.Fam_Name }}</td>
+                        <td>{{ data.Members }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <table>
+        </div>
+    </div>
+</center>
+{% endblock content %}
