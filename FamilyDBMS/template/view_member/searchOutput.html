@@ -1,29 +1,31 @@
 {% extends 'TheBaseDB.html' %}
 {% block content %}
 <center>
-    <div class="cardoutput spacer">
-        <table>
-            <thead>
-                <th>ID</th>
-                <th>Gender</th>
-                <th>Name</th>
-                <th>D.O.B</th>
-                <th>Demise</th>
-                <th>Registered On</th>
-            </thead>
-            <tbody>
-                {% for data in FamMember %}
-                <tr>
-                    <td>{{ data.FamMemberID }}</td>
-                    <td>{{ data.Gender }}</td>
-                    <td>{{ data.Fname }} {{ data.Name }} {{ data.Lname }}</td>
-                    <td>{{ data.DoB }}</td>
-                    <td>{{ data.DoD }}</td>
-                    <td>{{ data.registered_on }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
+    <div class="main2">
+        <div class="cardoutput spacer">
             <table>
+                <thead>
+                    <th>ID</th>
+                    <th>Gender</th>
+                    <th>Name</th>
+                    <th>D.O.B</th>
+                    <th>Demise</th>
+                    <th>Registered On</th>
+                </thead>
+                <tbody>
+                    {% for data in FamMember %}
+                    <tr>
+                        <td>{{ data.FamMemberID }}</td>
+                        <td>{{ data.Gender }}</td>
+                        <td>{{ data.Fname }} {{ data.Name }} {{ data.Lname }}</td>
+                        <td>{{ data.DoB }}</td>
+                        <td>{{ data.DoD }}</td>
+                        <td>{{ data.registered_on }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <table>
+        </div>
     </div>
 </center>
 {% endblock content %}

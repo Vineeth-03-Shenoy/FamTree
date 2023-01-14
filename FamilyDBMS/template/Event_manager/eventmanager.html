@@ -1,48 +1,13 @@
-
+{% extends 'TheBaseEvent.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Family Database Management System</title>
-    <link rel="stylesheet" href="{% static 'css/DBstyles.css' %}">
-</head>
-<body class="body">
-    {% block content %} 
-    <div class="main" background-image: url = "../images/LLRR4.png" >
-        <div class="navbar">
-            <div class="icon">
-                <h1 class="logo">The Database</h1>
-            </div>
-
-            <div class="menu">
-            <ul>
-                <li><button name="button" class="navbutton" type="submit" onclick="location.href='{% url "famHome" %}'">HOME</button></li>
-                <li><button name="newmemberbutton" class="navbutton" type="submit" onclick="location.href='{% url "NewEvent" %}'">New Event</button></li>
-                <li><button name="deletebutton" class="navbutton" type="submit" onclick="location.href='{% url "Invitees" %}'">Invitees</button></li>
-                <li><button name="viewbutton" class="navbutton" type="submit" onclick="location.href='{% url "ViewEvents" %}'">View Event</button></li>
-                <li>
-                    {% if user.is_authenticated %} 
-                        <form action="/famapp/accounts/signup/" method="post">
-                        {% csrf_token %}
-                        <button class="btn" type="submit">Log Out</button>
-                        </form>
-                    {% endif %}
-                </li>
-            </ul>
-            </div>
-        </div>
-        <div class="content">
-            <h1>The<br><span>EVENT MANAGER</span><br></h1>
-            <p class="par">This is where you can register a new family member into the database<br>
-                You can also delete or update the details of registered members<br>
-                You can also save the personal details like Phone Number and address of registered members<br>
-                You can retrieve and view all of these details as well<br>
-            </p>
-        </div>
-    </div>
-    
-    {% endblock content %} 
-</body>
-
-</html>
+{% block content %}
+<div class="content">
+    <h1>The<br><span>EVENT MANAGER</span><br></h1>
+    <p class="par">This is where you can register a new Event onto the database<br>
+        You can mention details like venue, date, and title of the event.<br>
+        You can specify who you would be inviting for the event.<br>
+        You can then obtain the Phone Number and address of the invitees<br>
+        You can retrieve and view all of these details in the future as well<br>
+    </p>
+</div>
+{% endblock content %}
