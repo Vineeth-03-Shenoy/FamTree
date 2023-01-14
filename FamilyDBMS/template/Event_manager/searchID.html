@@ -1,0 +1,17 @@
+{% extends 'TheBaseEvent.html' %}
+{% block content %}
+<center>
+    <div class="card center spacer">
+        <h1 class="title text-center">Search Event Details of:</h1>
+        <form method="post" class="login-form spacer" id="searchMember">
+            {% csrf_token %}
+            <div class="input-group">
+                <div class="input-group">
+                    <input required="" , name="Event_code" , id="Event_code" , type="text" , class="form-input" ,
+                        placeholder="Enter Event_ID" , maxlength='17' , minlength='1'>
+                </div>
+            </div>
+            <input type="submit" class="btn" value="SUBMIT">
+        </form>
+</center>
+{% endblock content %}

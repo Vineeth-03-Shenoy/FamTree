@@ -1,0 +1,28 @@
+{% extends 'TheBaseEvent.html' %}
+{% block content %}
+<center>
+    <div class="main3">
+        <div class="cardoutput spacer">
+            <h1 class="title text-center">LIST OF ALL EVENTS</h1>
+            <table>
+                <thead>
+                    <th>Name</th>
+                    <th>ID</th>
+                    <th>Details</th>
+                    <th>Date</th>
+                </thead>
+                <tbody>
+                    {% for data in Event %}
+                    <tr>
+                        <td>{{ data.Event_Name }}</td>
+                        <td>{{ data.Event_ID }}</td>
+                        <td>{{ data.Venue }}</td>
+                        <td>{{ data.Date }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <table>
+        </div>
+    </div>
+</center>
+{% endblock content %}

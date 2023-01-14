@@ -1,0 +1,18 @@
+{% extends 'TheBaseEvent.html' %}
+{% block content %}
+<center>
+    <div class="card center spacer">
+        <h1 class="title text-center">Delete Event</h1>
+        <form method="post" action="/famapp/home/Eventmanager/DeleteEvent/" class="login-form spacer" id="inputMember">
+            {% csrf_token %}
+            <div class="input-group">
+                <div class="input-group">
+                    <input required="" , name="Event_ID" , id="Event_ID" , type="text" , class="form-input" ,
+                        placeholder="Enter Event_ID" , maxlength='20' , minlength='1'>
+                </div>
+            </div>
+            <input type="submit" class="btn" value="SUBMIT">
+        </form>
+    </div>
+</center>
+{% endblock content %}

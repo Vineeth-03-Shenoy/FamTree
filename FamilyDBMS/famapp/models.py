@@ -18,7 +18,7 @@ class Couple_Family(models.Model):
     Wed_ann = models.DateField()
 
 class Parents(models.Model):
-    id = models.CharField(primary_key=True, max_length=20)
+    id = models.AutoField(primary_key=True)
     child_ID = models.ForeignKey(Family_Member, on_delete=models.CASCADE, related_name='child', to_field='FamMemberID')
     parents_ID = models.ForeignKey(Couple_Family, on_delete=models.CASCADE, related_name='parent', to_field='Couple_ID')
 
@@ -40,13 +40,19 @@ class Families(models.Model):
     Members = models.IntegerField()
 
 class Events(models.Model):
-    Event_ID = models.CharField(max_length=30, primary_key=True)
+    Event_ID = models.AutoField(primary_key=True)
     Event_Name = models.CharField(max_length=100)
     Venue = models.CharField(max_length=100)
     Date = models.DateField()
 
-class Invitees(models.Model):
-    Event_code = models.ForeignKey(Events, on_delete=models.CASCADE)
-    Family_invited = models.ForeignKey(Families, on_delete=models.SET_NULL, null=True)
-    Couple_invited = models.ForeignKey(Couple_Family, on_delete=models.SET_NULL, null=True)
+class MemberInvited(models.Model):
+    Event_code = models.ForeignKey(Events, on_delete=models.CASCADE, to_field='Event_ID')
+    Member_Invited = models.ForeignKey(Family_Member, on_delete=models.SET_NULL, null=True, to_field='FamMemberID')
 
+class FamilyInvited(models.Model):
+    Event_code = models.ForeignKey(Events, on_delete=models.CASCADE, to_field='Event_ID')
+    Family_invited = models.ForeignKey(Families, on_delete=models.SET_NULL, null=True, to_field='Family_ID')
+
+class CoupleInvited(models.Model):
+    Event_code = models.ForeignKey(Events, on_delete=models.CASCADE, to_field='Event_ID')
+    Couple_invited = models.ForeignKey(Couple_Family, on_delete=models.SET_NULL, null=True, to_field='Couple_ID')

@@ -1,8 +1,9 @@
 import datetime
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Family_Member, Personal_Info, Couple_Family, Parents, Families
+from .models import Family_Member, Personal_Info, Couple_Family, Parents, Families, Events, MemberInvited, FamilyInvited, CoupleInvited
 import time
+from django.db.models import Q
 
 # Create your views here.
 def home(request):
@@ -54,6 +55,10 @@ def DeleteMember(request):
         try:
             ins=Family_Member.objects.get(FamMemberID=FamMemberID)
             print(ins)
+            FamID = ins.Fname+' '+ins.Lname
+            ins2 = Families.objects.get(Fam_Name=FamID)
+            ins2.Members-=1
+            ins2.save()
             ins.delete()
             return render(request, "delete_member/delete successfull.html", { 'FamMemberID': FamMemberID+' Deleted' })
         except Family_Member.DoesNotExist:
@@ -220,17 +225,163 @@ def ViewSearchChildren(request):
             return render(request, "Parents/children.html")
     return render(request, "Parents/searchByParent.html")
 
+def ViewFamilies(request):
+    Family=Families.objects.all().order_by('-Members')
+    return render(request, "view_member/FamiliesinDB.html", { 'Family' : Family })
+
 def eventmanager(request):
     return render(request, "Event_manager/eventmanager.html")
 
 def Newevent(request):
+    if request.method=="POST":
+        Event_Name=request.POST['Event_Name']
+        Venue=request.POST['Venue']
+        Date=request.POST['Date']
+        ins=Events(Event_Name=Event_Name, Venue=Venue, Date=Date)
+        ins.save()
+        return render(request, "Event_manager/InviteesOutput.html", { 'info' : ins })
+
     return render(request, "Event_manager/eventregister.html")
 
-def Invitees(request):
+def DeleteEvent(request):
+    if request.method=='POST':
+        Event_ID=request.POST['Event_ID']
+        try:
+            ins=Events.objects.get(Event_ID=Event_ID)
+            print(ins)
+            ins.delete()
+            return render(request, "Event_manager/delete successfull.html", { 'Event_ID': Event_ID+' Deleted' })
+        except Family_Member.DoesNotExist:
+            return render(request, "Event_manager/delete successfull.html", { 'Event_ID': Event_ID+' Does Not Exist.!! If you think it exists, Check ID and enter again' })
+    return render(request, "Event_manager/deleteEvent.html")
+
+def AlleventsDisplay(request):
+    ins = Events.objects.all().order_by('Date')
+    return render(request, "Event_manager/AllEvents.html", {'Event':ins})
+
+def Invited(request):
+    if request.method=='POST':
+        Event_code=request.POST['Event_code']
+        Member_Invited = request.POST['Member_Invited']
+        Couple_invited = request.POST['Couple_invited']
+        Family_invited = request.POST['Family_invited']
+        print(Event_code," ",Member_Invited," ",Couple_invited," ",Family_invited)
+        ins=Events.objects.get(Event_ID=Event_code)
+        if len(Member_Invited)==17:
+            ins2 = MemberInvited(Event_code_id=Event_code, Member_Invited_id=Member_Invited)
+            ins2.save()
+        if len(Couple_invited)==14:
+            ins3 = CoupleInvited(Event_code_id=Event_code, Couple_invited_id=Couple_invited)
+            ins3.save()
+        if len(Family_invited)==6:
+            ins3 = FamilyInvited(Event_code_id=Event_code, Family_invited_id=Family_invited)
+            ins3.save()
+        return render(request, "Event_manager/inviteesevent.html")
     return render(request, "Event_manager/inviteesevent.html")
 
-def ViewEvent(request):
-    return render(request, "Event_manager/viewevent.html")
+def ViewInvitees(request):
+    if request.method=='POST':
+        event_id=request.POST['Event_code']
+        try:
+            instance = Events.objects.get(Event_ID=event_id)
+        except Events.DoesNotExist:
+            return render(request, 'Event_manager/searchID.html')
+    # Retrieve all individual members invited to the event
+        member_invites = MemberInvited.objects.filter(Event_code=event_id)
+        members = []
+        for invite in member_invites:
+            member = invite.Member_Invited
+            try:
+                personal_info = member.personal_info
+                members.append({
+                    'name': member.Fname+" "+member.Name+" "+member.Lname,
+                    'phone': personal_info.Phone,
+                    'address': personal_info.Address
+                })
+            except Personal_Info.DoesNotExist:
+                members.append({
+                    'name': member.Fname+" "+member.Name+" "+member.Lname,
+                    'phone': None,
+                    'address': None
+                })
+
+    # Retrieve all families invited to the event
+        family_invites = FamilyInvited.objects.filter(Event_code=event_id)
+        families = []
+        for invite in family_invites:
+            family = invite.Family_invited
+            try:
+                familyname = Families.objects.get(Family_ID=family.pk)
+                FNAME, LNAME = familyname.Fam_Name.split(" ")
+                try:
+                    family_members = Family_Member.objects.filter(Q(Fname=FNAME) & Q(Lname=LNAME))
+                    members_details = []
+                    for family_member in family_members:
+                        try:
+                            personal_info = family_member.personal_info
+                            members_details.append({
+                                'name': family_member.Name,
+                                'phone': personal_info.Phone,
+                                'address': personal_info.Address
+                            })
+                        except Personal_Info.DoesNotExist:
+                            members_details.append({
+                                'name': family_member.Name,
+                                'phone': None,
+                                'address': None
+                            })
+                    families.append({
+                        'name': family.Fam_Name,
+                        'members': members_details
+                    })
+                except Family_Member.DoesNotExist:
+                    families.append({
+                        'name': family.Fam_Name,
+                        'members': []
+                    })
+            except Families.DoesNotExist:
+                print("Family does not exist")
+
+    # Retrieve all couples invited to the event
+        couple_invites = CoupleInvited.objects.filter(Event_code=event_id)
+        couples = []
+        for invite in couple_invites:
+            couple = invite.Couple_invited
+            husband = couple.Hus
+            wife = couple.Wife
+            try:
+                husband_personal_info = husband.personal_info
+                husband_details = {
+                    'name': husband.Fname+" "+husband.Name+" "+husband.Lname,
+                    'phone': husband_personal_info.Phone,
+                    'address': husband_personal_info.Address
+                }
+            except Personal_Info.DoesNotExist:
+                husband_details = {
+                    'name': husband.Fname+" "+husband.Name+" "+husband.Lname,
+                    'phone': None,
+                    'address': None
+                }
+            try:
+                wife_personal_info = wife.personal_info
+                wife_details = {
+                    'name': wife.Fname+" "+wife.Name+" "+wife.Lname,
+                    'phone': wife_personal_info.Phone,
+                    'address': wife_personal_info.Address
+                }
+            except Personal_Info.DoesNotExist:
+                wife_details = {
+                    'name': wife.Fname+" "+wife.Name+" "+wife.Lname,
+                    'phone': None,
+                    'address': None
+                }
+            couples.append({
+                'husband': husband_details,
+                'wife': wife_details
+            })
+        context = {'info' : instance, 'members': members, 'families': families, 'couples': couples}
+        return render(request, 'Event_manager/InviteesOutput.html', context)
+    return render(request, 'Event_manager/searchID.html')
 
 def Famtree(request):
     if request.method=='POST':
@@ -267,7 +418,6 @@ def ID_Creator(Fname,name,Lname,Dob,coll_val):
         midname = name[0]+name[(len(name)//2)+2]+name[len(name)-1]
         ID = Dob[:4]+firname+midname+lastname+Dob[5:7]+Dob[8:10]
         return ID,FamID
-
 
 def find_children(fam_member_id):
     children = Parents.objects.filter(parents_ID__Hus=fam_member_id) | Parents.objects.filter(parents_ID__Wife=fam_member_id)
