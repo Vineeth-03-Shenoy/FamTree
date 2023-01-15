@@ -383,6 +383,12 @@ def ViewInvitees(request):
         return render(request, 'Event_manager/InviteesOutput.html', context)
     return render(request, 'Event_manager/searchID.html')
 
+def About(request):
+    return render(request, "About.html")
+
+def Contact(request):
+    return render(request, "contact.html")
+
 def Famtree(request):
     if request.method=='POST':
         start_id=request.POST['sourceMember']

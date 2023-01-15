@@ -5,14 +5,14 @@
 
 .main{
     width: 100%;
-    background-image: url("../images/DBpageBG.jpg");
+    background-image: url("../images/DBpageBG.png");
     background-position: center;
     background-size: cover;
     height: 100vh;
 }
 .main2{
     width: 100%;
-    background-image: url("../images/DBpageBG.jpg");
+    background-image: url("../images/DBpageBG.png");
     background-position: center;
     background-size: cover;
     height: 100%;
@@ -27,6 +27,13 @@
 .main4{
     width: 100%;
     background-image: url("../images/EMpageBG.jpg");
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+}
+.main5{
+    width: 100%;
+    background-image: url("../images/DBpageBG.jpg");
     background-position: center;
     background-size: cover;
     height: 100%;
@@ -241,7 +248,7 @@ span{
 .card{
       border-radius: 10px;
       font-size:large;
-      background-color: rgba(0, 0, 0, 0.449);
+      background-color: rgba(0, 0, 0, 0.67);
       transition: all 0.3s ease-in-out;
       width: 50%;
       min-width: 320px;
@@ -312,8 +319,9 @@ td{
 }
 
 .text-center{
-      text-align: center;
+    text-align: center;
 }
+
 
 @media screen and (max-width:1200px) {
     /*Normal Screen*/

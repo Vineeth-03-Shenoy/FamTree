@@ -10,10 +10,34 @@
     background-size: cover;
     height: 100vh;
 }
-
+.main2{
+    width: 100%;
+    background-image: url("../images/HomePageBG.jpg");
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+}
 body{
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+.par{
+    height: auto;
+    margin: auto;
+    color:#fff;
+    position: relative;
+    font-size: 125%;
+    letter-spacing: 1.2px;
+    line-height: 30px;
+}
+
+span{
+    color:#ff7200;
+    font-weight: bold;
+    font-size: 110%;
+    letter-spacing: 1.2px;
+    line-height: 30px;
+}
+
 
 .navbar{
     width: 100%;
