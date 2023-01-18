@@ -5,10 +5,10 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Family Database Management System</title>
-    <link rel="stylesheet" href="{% static 'css/Homestyles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/DBstyles.css' %}">
 </head>
 <body>
-    <div class="main">
+    <div class="main7">
         <div class="navbar">
             <div class="icon">
                 <h2 class="logo">Family DataBase</h2>
@@ -17,8 +17,8 @@
             <div class="menu">
                 <ul>
                     <li><button name="button" class="navbutton" type="submit" onclick="location.href='{% url "famHome" %}'">HOME</button></li>
-                    <li><button name="FamilyDBbutton" class="navbutton" type="submit" onclick="location.href='{% url "DataBase" %}'">DataBase</button></li>
-                    <li><button name="eventbutton" class="navbutton" type="submit" onclick="location.href='{% url "Eventmanager" %}'">Event Manager</button></li>
+                    <li><button name="FamilyDBbutton" class="navbutton" type="submit" onclick="location.href='{% url "DataBase" %}'">DATABASE</button></li>
+                    <li><button name="eventbutton" class="navbutton" type="submit" onclick="location.href='{% url "Eventmanager" %}'">EVENT MANAGER</button></li>
                     <li><button name="aboutbutton" class="navbutton" type="submit" onclick="location.href='{% url "About" %}'">ABOUT</button></li>
                     <li><button name="contactbutton" class="navbutton" type="submit" onclick="location.href='{% url "Contact" %}'">CONTACT</button></li>
 

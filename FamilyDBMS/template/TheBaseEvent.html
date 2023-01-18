@@ -16,11 +16,11 @@
             <div class="menu">
             <ul>
                 <li><button name="button" class="navbutton" type="submit" onclick="location.href='{% url "famHome" %}'">HOME</button></li>
-                <li><button name="newmemberbutton" class="navbutton" type="submit" onclick="location.href='{% url "NewEvent" %}'">New Event</button></li>
-                <li><button name="deletebutton" class="navbutton" type="submit" onclick="location.href='{% url "Invitees" %}'">Register Invitees</button></li>
-                <li><button name="viewbutton" class="navbutton" type="submit" onclick="location.href='{% url "ViewInvitees" %}'">View Invitees</button></li>
-                <li><button name="viewbutton" class="navbutton" type="submit" onclick="location.href='{% url "DeleteEvent" %}'">Delete Event</button></li>
-                <li><button name="viewbutton" class="navbutton" type="submit" onclick="location.href='{% url "AllEvents" %}'">All Events</button></li>
+                <li><button name="newmemberbutton" class="navbutton" type="submit" onclick="location.href='{% url "NewEvent" %}'">NEW EVENT</button></li>
+                <li><button name="deletebutton" class="navbutton" type="submit" onclick="location.href='{% url "Invitees" %}'">INVITEES</button></li>
+                <li><button name="viewbutton" class="navbutton" type="submit" onclick="location.href='{% url "ViewInvitees" %}'">VIEW INVITEES</button></li>
+                <li><button name="viewbutton" class="navbutton" type="submit" onclick="location.href='{% url "DeleteEvent" %}'">DELETE EVENT</button></li>
+                <li><button name="viewbutton" class="navbutton" type="submit" onclick="location.href='{% url "AllEvents" %}'">ALL EVENTS</button></li>
                 <li>
                     {% if user.is_authenticated %} 
                         <form action="/famapp/accounts/signup/" method="post">

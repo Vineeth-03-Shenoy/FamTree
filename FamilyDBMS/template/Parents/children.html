@@ -13,8 +13,7 @@
                 {% for child in list %}
                 <SPAN>Name: </SPAN>{{ child.Fname }} {{ child.Name }} {{ child.Lname }} <span>D.O.B:</span> {{ child.DoB }}<br><br>
                 {% endfor %}
-                <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "
-                    ViewParentsDB"%}'">View Entire Parents Table</button>
+                <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "ViewParentsDB" %}'">View Entire Parents Table</button>
             </p>
         </div>
     </div>

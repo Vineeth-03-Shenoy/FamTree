@@ -5,14 +5,14 @@
 
 .main{
     width: 100%;
-    background-image: url("../images/DBpageBG.png");
+    background-image: url("../images/DBpageBG.jpg");
     background-position: center;
     background-size: cover;
     height: 100vh;
 }
 .main2{
     width: 100%;
-    background-image: url("../images/DBpageBG.png");
+    background-image: url("../images/DBpageBG.jpg");
     background-position: center;
     background-size: cover;
     height: 100%;
@@ -37,6 +37,20 @@
     background-position: center;
     background-size: cover;
     height: 100%;
+}
+.main6{
+    width: 100%;
+    background-image: url("../images/HomePageBG.jpg");
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+}
+.main7{
+    width: 100%;
+    background-image: url("../images/HomePageBG.jpg");
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
 }
 body{
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;

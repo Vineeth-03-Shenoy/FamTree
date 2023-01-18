@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Family Database Management System</title><link rel="stylesheet" href="{% static 'css/DBstyles.css' %}"></head>
+<body>
+    {% block content %} 
+
+    <div class="main6">
+        <div class="navbar">
+            <div class="icon">
+                <h2 class="logo">Family DataBase</h2>
+            </div>
+                <ul>
+                    <li><button name="homebutton" class="navbutton" type="submit" onclick="location.href='{% url "home" %}'">HOME</button></li>
+                    <<li><button name="aboutbutton" class="navbutton" type="submit" onclick="location.href='{% url "AboutHome" %}'">ABOUT</button></li>
+                    <li><button name="contactbutton" class="navbutton" type="submit" onclick="location.href='{% url "ContactHome" %}'">CONTACT</button></li>
+                </ul>
+        </div> 
+        <center>
+                <div class="cardoutput spacer">
+                    <h1 class="title text">:CONTACT:</h1>
+                    <p class="par">Here are the Contact Details of the Developers,<br><br>
+                    <span>Name : </span> VINEETH SHENOY P<br>
+                    <span>Email :</span> 20ai059.vineeth@sjec.ac.in <br>
+                    <span>Phone No :</span> +91 9449559975 <br>
+                    <span>Address : </span> Dept of ICBS, Academic Block III,<br> St Joseph Engineering College,<br> Vamanjoor,
+                    Mangaluru, Karnataka, India - 575028<br><br></p>
+                    <p class="par"><span>Name :</span> VIJNA SHETTY <br>
+                    <span>Email :</span> 20ai058.vijna@sjec.ac.in <br>
+                    <span>Phone No :</span> +91 7795830582<br>
+                    <span>Address : </span> Dept of ICBS, Academic Block III,<br> St Joseph Engineering College,<br> Vamanjoor,
+                    Mangaluru, Karnataka, India - 575028<br>
+                    </p>
+                </div>
+        </center>
+    <!--<script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>-->
+    {% endblock content %}
+</body>
+</html>

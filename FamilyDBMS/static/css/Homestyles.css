@@ -94,25 +94,7 @@ ul li{
     color: #ff7200;
 }
 
-.search{
-    width: 330px;
-    float: left;
-    margin-left: 10px;
-}
-.srch{
-    
-    width: 150px;
-    height: 40px;
-    background: transparent;
-    border: 1px solid #ff7200;
-    margin-top: auto;
-    color: #fff;
-    border-right: none;
-    font-size: 15px;
-    float: left;
-    border-bottom-left-radius: 2px;
-    border-top-left-radius: 2px;
-}
+
 .btn{
     width: 110px;
     height: 55px;

@@ -2,16 +2,16 @@
 {% block content %}
 <center>
     <div class="card center spacer">
-        <h1 class="title text-center">VIEW</h1>
-        <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "ViewSearchIDPage" %}'">Search member by ID</button>
-        <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "ViewSearchNamePage" %}'">Search by member Name</button>
-        <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "ViewSearchParents" %}'">Search Parents of a Member</button>
-        <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "ViewSearchChildren" %}'">Search Children of a Member</button><br>
-        <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "personalInfoSearch" %}'">Search personal Details</button>
-        <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "ViewDBPage" %}'">View entire DataBase</button>
-        <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "ViewCoupleDB" %}'">View Entire Couple Table</button>
-        <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "ViewParentsDB" %}'">View Entire Parents Table</button>
-        <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "ViewFamilies" %}'">Families present on DB</button>
+        <h1 class="title text-center">DISPLAY</h1>
+        <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "ViewSearchIDPage" %}'">Search by ID</button>
+        <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "ViewSearchNamePage" %}'">Search by Name</button>
+        <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "ViewSearchParents" %}'">Search Parents</button>
+        <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "ViewSearchChildren" %}'">Search Children</button>
+        <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "personalInfoSearch" %}'">Search Details</button><br>
+        <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "ViewDBPage" %}'">Display DataBase</button>
+        <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "ViewCoupleDB" %}'">Display Couples</button>
+        <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "ViewParentsDB" %}'">Display Parents</button>
+        <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "ViewFamilies" %}'">Display Families</button>
     </div>
 </center>
 {% endblock content %}
