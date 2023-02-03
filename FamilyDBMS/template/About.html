@@ -1,0 +1,32 @@
+{% extends 'TheBaseHOME.html' %}
+{% load static %}
+{% block content %}
+<head><link rel="stylesheet" href="{% static 'css/DBstyles.css' %}"></head>
+<center>
+    <div class="main6">
+        <div class="cardoutput spacer">
+            <h1 class="title text">: ABOUT :</h1>
+            <p class="par">
+                A one stop website to manage all the details of your beloved ones.<br>Don't remember your relative's
+                address?<br> Don't remember their phone number to invite them for an event close to your heart? <br>or, are you bad at remembering birthdays and anniversaries?<br> Let the Family Database take care of
+                that for you<br>
+                Our Family Database Management System will resolve all of these problems and many more.<br><br>
+                <span>Features:</span><br>
+                <span>The Database:</span><br>This is where you can register a new family member into the database<br>
+                You can also delete or update the details of registered members<br>
+                You can also save the personal details like Phone Number and address of registered members<br>
+                You can retrieve and view all of these details as well<br><br>
+                <span>The Event Manager:</span><br>This is where you can register a new Event onto the database<br>
+                You can mention details like venue, date, and title of the event.<br>
+                You can specify who you would be inviting for the event.<br>
+                You can then obtain the Phone Number and address of the invitees<br>
+                You can retrieve and view all of these details in the future as well<br><br>
+                <span>The Future:</span><br>
+                We will be implementing a Family Tree tracing algorithm to our website<br>
+                This will give you the path of members responsible for a relationship between any two members of the family<br>
+                We will also test image recognition features and implement them in the far future<br>
+            </p>
+        </div>
+    </div>
+</center>
+{% endblock content %}

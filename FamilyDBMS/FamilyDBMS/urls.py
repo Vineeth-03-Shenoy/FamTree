@@ -21,9 +21,13 @@ admin.autodiscover()
 
 urlpatterns = [
     path('', views.home, name="home"),
+    path('about/',views.AboutHome, name="AboutHome"),
+    path('contact/',views.ContactHome, name="ContactHome"),
     path('famapp/home/',views.FamHome, name="famHome"),
     path('famapp/home/DataBase/',views.DataBase, name="DataBase"),
     path('famapp/home/TraceTree/',views.Famtree, name="TraceTree"),
+    path('famapp/home/About/',views.About, name="About"),
+    path('famapp/home/Contact/',views.Contact, name="Contact"),
     path('famapp/home/Eventmanager/',views.eventmanager, name="Eventmanager"),
     path('famapp/home/Eventmanager/NewEvent/',views.Newevent, name="NewEvent"),
     path('famapp/home/Eventmanager/DeleteEvent/',views.DeleteEvent, name="DeleteEvent"),

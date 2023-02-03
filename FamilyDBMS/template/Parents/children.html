@@ -2,18 +2,20 @@
 {% load static %}
 {% block content %}
 <center>
-    <div class="cardoutput spacer">
-        <h1 class="title text">:Children Data:</h1>
-        <p class="par">
-            <br><span>Couple ID: </span>{{ data.Couple_ID }}<br><br>
-            <span>Father: </span>{{ Father.Fname }} {{ Father.Name }} {{ Father.Lname }}<br><br>
-            <span>Mother: </span>{{ Mother.Fname }} {{ Mother.Name }} {{ Mother.Lname }}<br><br>
-            <span>Children: </span><br>
-            {% for child in list %}
-            <SPAN>Name: </SPAN>{{ child.Fname }} {{ child.Name }} {{ child.Lname }} <span>D.O.B:</span> {{ child.DoB }}<br><br>
-            {% endfor %}
-            <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "ViewParentsDB"%}'">View Entire Parents Table</button>
-        </p>
+    <div class="main2">
+        <div class="cardoutput spacer">
+            <h1 class="title text">:Children Data:</h1>
+            <p class="par">
+                <br><span>Couple ID: </span>{{ data.Couple_ID }}<br><br>
+                <span>Father: </span>{{ Father.Fname }} {{ Father.Name }} {{ Father.Lname }}<br><br>
+                <span>Mother: </span>{{ Mother.Fname }} {{ Mother.Name }} {{ Mother.Lname }}<br><br>
+                <span>Children: </span><br>
+                {% for child in list %}
+                <SPAN>Name: </SPAN>{{ child.Fname }} {{ child.Name }} {{ child.Lname }} <span>D.O.B:</span> {{ child.DoB }}<br><br>
+                {% endfor %}
+                <button name="viewbutton" class="btn" type="submit" onclick="location.href='{% url "ViewParentsDB" %}'">View Entire Parents Table</button>
+            </p>
+        </div>
     </div>
 </center>
 {% endblock content %}
